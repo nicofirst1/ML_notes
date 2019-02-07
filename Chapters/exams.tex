@@ -291,6 +291,13 @@ Nope
 \end{figure}
 
 \subsection{ANN2}
+
+\subsection{FNN}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=1]{exercises/ex14.png}
+\end{figure}
+
 \begin{figure}[H]
     \centering
     \includegraphics[scale=1]{exercises/ex13.png}
@@ -304,6 +311,48 @@ The forward pass computes values from inputs to output and the backward pass the
 
 
 \paragraph{Stochastic Gradient Descend}
-Stochastic Gradient Descent updates the weight parameters after evaluation of the cost function after each sample.  That is, rather than summing up the cost function results for all the sample then taking the mean, SGD updates the weights after every training sample is analysed.
+Stochastic Gradient Descent updates the weight parameters after evaluation of the cost function after each sample.  That is, rather than summing up the cost function results for all the sample then taking the mean, SGD updates the weights after every training sample is analyzed.
 
 \paragraph{Back-Propagation algorithm}
+\begin{itemize}
+\item Requires:
+	\begin{itemize}
+	\item $W^i,\ i\in \braces{1,....,l}$: weight matrices
+	\item $b^i,\ i\in \braces{1,....,l}$: bias matrices
+	\item $x$: input value
+	\item $t$: target value
+	\end{itemize}
+\item Forward step
+
+\begin{itemize}
+\item $h^0=x$
+\item \textit{for\ k\ in\ range(1,l):}
+\item $a^k=b^k+W^kh^{k-1}$
+\item $h^k=f(\alpha^k)$
+\item \textit{end for}
+\end{itemize}
+
+\item Backward step
+
+\begin{itemize}
+	\item $g \leftarrow \nabla_YJ=\nabla_yL(t,y)$
+	\item \textit{for k=l,l-1,...1 do}
+	\item $g \leftarrow \nabla_{\alpha^k}J=g \odot f'(\alpa^k)$: propagate gradient to pre-non linearity activations
+	\item $\nabla_{b^k}J=g$
+	\item $\nabla_{W^k}J=g(h^{k-1})^T$
+	\item $g \leftarrow \nabla_{h^{k-1}}J=(W^k)^Tg$ propagate gradients to the next lower level hidden layer
+	\item \textit{end for loop}
+\end{itemize}
+
+\end{itemize}
+\subsection{SVMs}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=1]{exercises/ex15.png}
+\end{figure}
+
+\subsection{SVMs2}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=1]{exercises/ex16.png}
+\end{figure}
