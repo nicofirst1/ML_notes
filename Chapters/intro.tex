@@ -1,0 +1,107 @@
+
+\newcommand{\braces}[1]{\lbrace{#1}\rbrace}
+
+
+\section{Intro}
+\subsection{Intro}
+ML is producing knowledge from data, learning a function $f:X\rightarrow Y$ that takes some input $x \in X$ and outputs $y \in Y$.\\
+Learning $f$ means finding some approximation $f' \approx f$ so that the returned value $y' \simeq y$ is the closes to $y$ as possible.\\
+
+\paragraph{Un/Supervised}  When we have an output $y$ for each sample $y$ for the dataset $D=\lbrace (x_i,y_i)\rbrace$ we have \textbf{supervised } learning. When we do not have $y_i$ then we have \textbf{unsupervised}.
+
+\paragraph{Reinforcement Learning}
+Having a triple of elements $D: (s_i,a_i,r_i)$ (state, action, reward), RL is the practice of learning a policy $\pi$ in order to maximize the total discounted reward:
+\[\pi: argmax(r_0+ \gamma r_1+ \gamma^2 r_2+...+\gamma^n r_n)\]
+Where $\gamma$ is some discount to give more/less weight to current reward on behalf of the future ones.
+
+\paragraph{Hypothesis}
+Given a target function $\phi(x)$ that we want to learn and a set of approximations $H:\lbrace h_1, h_2,...,h_n\rbrace$ of which $h*$ is the best according to some measure, we have that $h*(x_i)$ is the best approximation of $y_i$.\\
+$h*$ is \textbf{consistent} with the dataset $D$ iff:
+\[h*(x_i)= \phi(x_i),\ \forall x in D\]
+
+\subsection{Evaluation/Estimators}
+
+\paragraph{True Error}
+Given an hypothesis $h$ that approximates a target function $\phi $ the \textbf{true error} is the probability that $h(x) \new \phi(x)$:
+\[error_t(h) \equiv P(h(x)\neq \phi(x))\]
+Cannot be computed.
+
+\paragraph{Sample Error}
+Given an hypothesis $h$ that approximates a target function $\phi $ the \textbf{sample error} is the proportion of samples not correctly classified:
+\[error_s(h) \equiv \frac{1}{n} \sum_{x \in D} \delta(h(x), \phi(x))\]
+Where $\delta(h(x), \phi(x))=1$ iff $h(x) \neq \phi(x)$, 0 otherwise.\\
+We have that $accuracy(h)=1- error_s(h)$
+
+\paragraph{Estimation Bias}
+We have that the bias between true error and sample error is:
+\[bias \equiv E[error_s(h)]-error_t(h)\]
+
+\paragraph{Comparing hypothesis}
+Having two hypothesis $h_1,h_2$ the comparison can be:
+\[d= error_t(h_1)- error_t(h_2)\]
+\[\hat{d}= error_s(h_1)- error_s(h_2)\]
+\[E[\hat{d}]=d\]
+
+\paragraph{Overfitting}
+An hypo $h$ overfits the data if, given another hypo $h'$ we have that:
+\[error_s(h)>error_s(h')\quad and\quad error_t(h)< error_t(h')\]
+
+
+\paragraph{K-fold Cross Validation}
+Partition the dataset $D$ into $k$ subsets $D: \braces{S_1,S_2,...,S_k}$. Use one subset $S_i$ as test set and all the other make up the training set $T=S_1 \cup S_2 \cup...\cup S_{i-1}\cup S_{i+1}\cup ...\cup S_k$.\\
+
+\paragraph{Others}
+\begin{itemize}
+\item \textbf{Error rate}= $\frac{FN+FP}{TP+TN+FP+FN}$
+\item \textbf{Accuracy}= 1- error rate
+\item \textbf{Recall}= $\frac{TP}{TP+FP}$
+\item \textbf{Precision}=$\frac{TP}{TP+FP}$
+\item \textbf{F1-score}=$\frac{2 \cdot Precision * Recall}}{Precision + Recall}$
+\item \textbf{Confusion Matrix}: miss - classification rate between classes $C_j,C_i$.
+\end{itemize}
+
+\subsection{Decision Trees}
+Given an instance space $X$ coming from a set of attributes a decision tree has: each internal node tests an attribute, each branch denotes a value of an attribute, each leaf assigns a classification value. A rule is generated for each path to a leaf node. 
+
+
+\paragraph{Entropy}
+Having the proportion of positive samples as $p_+$ and the negative ones as $p_-=1-p_+$ the entropy measure the impurity of the set of samples $S$:
+\[Entropy(S)=-p_+^2-p_-^2\]
+
+
+
+
+\paragraph{Information gain}
+Information gain measures how well a given attribute separates the training examples according to their target classification. Information gain is measured as reduction in entropy.\\
+$Gain(S,A)$ is the expected reduction in entropy of $S$ caused by knowing the value of attribute $A$:
+\[Gain(S,A)=Entropy(S)-\sum_{v \in Values(S)}\frac{|S_v|}{S}\cdot Entropy(S_v)\] 
+
+
+\paragraph{ID3}
+
+Is an algorithm used to generate a decision tree from a dataset.
+Hypothesis space search by ID3 is complete (target concept is there), outputs a single hypothesis (cannot determine how many DTs are consistent), no back tracking (local minimal), statistically-based search choices (robust to noisy data), uses al the training examples at each step (not incremental).
+
+\paragraph{Issues}
+\begin{itemize}
+\item decise depth
+\item handling continous attributes
+\item choosing appropriate attribute selection measures
+\item missing attribute values
+\item handling attributes with different costs.
+\end{itemize}
+
+\paragraph{Overfitting and pruning}
+To avoid tree overfitting an approach is to not split a node when the data is not statistically significant. Instead grow a full tree and then post-prune (replace nodes not important with leafs).\\
+To determine correct tree size, use a separate set of examples (training test and validation set), apply statistical test to estimate accuracy of a tree on data distribution
+
+\subsection{Probability and Bayes}
+
+\paragraph{Posterior}
+Conditional (or posterior) probability belief after the arrival of some evidence. I know the outcome of a random variable, how this affect probability of other random variables?
+\[P(a|b)=\frac{P(a \wedge b)}{P(b)}\]
+Where denominator can be replaced with a normalization constant $\alpha$.
+
+
+
+
