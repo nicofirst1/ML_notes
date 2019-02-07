@@ -225,3 +225,85 @@ Given
 \end{itemize}
 The output of the linear classifier is:
 \[Y_m(x)=sign(\sum_{m=1}^M\alpha_my_m(x))\]
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=1]{exercises/ex9.png}
+\end{figure}
+
+\paragraph{Boosting}
+In supervised learning, boosting converts weak learners to strong ones. A weak learner is defined to be a classifier that is only slightly correlated with the true classification (it can label examples better than random guessing). In contrast, a strong learner is a classifier that is arbitrarily well-correlated with the true classification.
+
+\paragraph{AdaBoost}
+No prior knowledge about base learner is required, no parameters to tune (except for M), can be combined with any method to find base learners and theoretical guarantees given enough data and base learners with moderate accuracy.\\
+The error function to minimize is:
+\[J_m=\sum_{n=1}^N w_n^{(m)}\mathcal{I}(y_m(x_n)\neq t_n\]
+Given 
+\begin{itemize}
+\item $\epsilon_m = \frac{\sum_{n=1}^N w_n^{(m)}\mathcal{I}(y_m(x_n)\neq t_n}{\sum_{n=1}^N w_n^{(m)}}$
+\item $\alpha=ln(\frac{1-\epsilon_m}{\epsilon_m})$
+\end{itemize}
+The output of the linear classifier is:
+\[Y_m(x)=sign(\sum_{m=1}^M\alpha_my_m(x))\]
+
+\subsection{Unsupervised vs supervised}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=1]{exercises/ex10.png}
+\end{figure}
+
+Supervised learning is typically done in the context of:
+\begin{itemize}
+\item \textbf{Classification}: when we want to map input to output labels.
+\item \textbf{Regression}: when we want to map input to a continuous output.
+\end{itemize} 
+
+In both regression and classification, the goal is to find specific relationships or structure in the input data that allow us to effectively produce correct output data.\\
+
+Unsupervised learning uses techniques such as clustering, representation learning and density estimation. In all of these cases, we wish to learn the inherent structure of our input data without using explicitly-provided labels. Since no labels are provided, when analyzing the output there is no specific way to compare model performance in most unsupervised learning methods.\\
+ 
+On the other hand, supervised learning  intends to infer a conditional probability distribution $p_X(x|y)$ conditioned on the label $y$ of input data; unsupervised learning intends to infer an a priori probability distribution $P_X(x)$ . Compared to supervised learning where training data is labeled with the appropriate classifications, models using unsupervised learning must learn relationships between elements in a data set and classify the raw data without "help."
+
+\subsection{Unsupervised}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=1]{exercises/ex11.png}
+\end{figure}
+
+\paragraph{Definition}
+Unsupervised learning is a branch of machine learning that learns from test data that has not been labeled, classified or categorized. Instead of responding to feedback, unsupervised learning identifies commonalities in the data and reacts based on the presence or absence of such commonalities in each new piece of data. Alternatives include supervised learning and reinforcement learning. 
+
+\paragraph{Example}
+Using K-Means with number of clusters equal to 4, we get 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{kmeans.jpeg}
+\end{figure}
+
+\paragraph{K-Means}
+Nope
+\subsection{ANN}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=1]{exercises/ex12.png}
+\end{figure}
+
+\subsection{ANN2}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=1]{exercises/ex13.png}
+\end{figure}
+
+\paragraph{Back-Propagation}
+Backpropagation algorithm is used to propagate gradient computation from the cost through the whole network. The goal is to compute the gradient of the cost function w.r.t. the parameters $\nabla_{\theta}J(\theta)$ in a simple and efficient way.
+
+\paragraph{Backward and Forward pass}
+The forward pass computes values from inputs to output and the backward pass then performs backpropagation which starts at the end and recursively applies the chain rule to compute the gradients all the way to the inputs of the circuit. The gradients can be thought of as flowing backwards through the circuit.
+
+
+\paragraph{Stochastic Gradient Descend}
+Stochastic Gradient Descent updates the weight parameters after evaluation of the cost function after each sample.  That is, rather than summing up the cost function results for all the sample then taking the mean, SGD updates the weights after every training sample is analysed.
+
+\paragraph{Back-Propagation algorithm}
