@@ -290,7 +290,19 @@ Nope
     \includegraphics[scale=1]{exercises/ex12.png}
 \end{figure}
 
-\subsection{ANN2}
+\paragraph{Architecture}
+The architecture is the following
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.3]{exercises/ann1.jpeg}
+\end{figure}
+
+\paragraph{Size of ANN}
+Since the network is a fully connected with $\mathcal{R}^8\rightarrow\mathcal{R}^6\mathcal{R}^4$ the network has:
+\[(8 \times 6)+(6\times 4)=69)\]
+Parameters.
+
+
 
 \subsection{FNN}
 \begin{figure}[H]
@@ -298,10 +310,15 @@ Nope
     \includegraphics[scale=1]{exercises/ex14.png}
 \end{figure}
 
+
+\subsection{ANN2}
+
 \begin{figure}[H]
     \centering
     \includegraphics[scale=1]{exercises/ex13.png}
 \end{figure}
+
+
 
 \paragraph{Back-Propagation}
 Backpropagation algorithm is used to propagate gradient computation from the cost through the whole network. The goal is to compute the gradient of the cost function w.r.t. the parameters $\nabla_{\theta}J(\theta)$ in a simple and efficient way.
