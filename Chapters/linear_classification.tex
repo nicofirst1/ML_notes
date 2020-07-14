@@ -6,7 +6,7 @@ Some instance are linearly separable if it exists some hyper-plane that splits t
 \[f: y(\bm{x})=\bm{w}^T\bm{x}+w_0\]
 
 
-The problem with using multiple classes is shown in Figure \ref{fig:linear_problem}.
+The problem with using multiple classes is shown in the following figure.
 
 
 \begin{figure}[H]
@@ -14,9 +14,9 @@ The problem with using multiple classes is shown in Figure \ref{fig:linear_probl
     \subfloat[One Versus One]{{\includegraphics[width=5cm]{ovo_linear.png} }}%
     \qquad
     \subfloat[One Versus Rest]{{\includegraphics[width=5cm]{ovr_linear.png} }}%
-    \caption{One Versus Rest }
 
-\label{fig:linear_problem}%
+\caption{One Versus Rest }
+\label{fig:linear_problem}
 
 \end{figure}
 
@@ -45,7 +45,7 @@ Our goal is to determine a good $\cmp{W}$, there are various techniques we can u
 
 \subsection{Least Squares}
 Given a dataset $D$ made of instances associated with a one hot vector encoder:
-\[\forall x_i in D: iff x_i \in c_k \rightarrow t_i=(0,0,...,1,...0): t_i[k]=1\]
+\[\forall x_i \in D: iff\ x_i \in c_k \rightarrow t_i=(0,0,...,1,...0): t_i[k]=1\]
 The Least Square aims to minimize the sum-of-square error function
 
 
@@ -85,7 +85,7 @@ So we can now normalize the $dist$ by the scatter, getting the fisher linear dis
 The function to minimize is the square error, given the output $o$ and the true label $t$:
 \[E(\bm{w})=\frac{1}{2}\sum_{n=1}^N(t_n-o_n)^2=\frac{1}{2}\sum_{n=1}^N(t_n -\bm{w}^Tx_n)^2\]
 Since we need to minimize this error we want to move to the direction of the gradient, thus computing the derivative of:
-\[\frac{\partialE(\bm{w}) }{\partial w_i}=\sum_{n=1}^N(t_n-\bm{w}^Tx_n)(-x_{i,n})\]
+$$\frac{\partial E(\bm{w}) }{\partial w_i}=\sum_{n=1}^N(t_n-\bm{w}^Tx_n)(-x_{i,n})$$
 Where $-x_{i,n}$ is the value of i-th feature.\\
 so we can update the weight $w_i$ by $w_{i+1}=w_i + \Delta w$, where:
 
@@ -102,9 +102,9 @@ SVMs are based on the idea of finding a hyperplane that best divides a dataset i
 
 \begin{figure}[H]
     \centering
-    \subfloat{{\includegraphics[width=5cm]{svm1.png} }}%
+    \subfloat{{\includegraphics[scale=0.5]{svm1.png} }}%
     \qquad
-    \subfloat{{\includegraphics[width=5cm]{svm2.png} }}%
+    \subfloat{{\includegraphics[scale=0.5]{svm2.png} }}%
 
 \label{fig:linear_problem}%
 \end{figure}

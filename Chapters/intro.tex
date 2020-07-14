@@ -17,13 +17,13 @@ Where $\gamma$ is some discount to give more/less weight to current reward on be
 \paragraph{Hypothesis}
 Given a target function $\phi(x)$ that we want to learn and a set of approximations $H:\lbrace h_1, h_2,...,h_n\rbrace$ of which $h*$ is the best according to some measure, we have that $h*(x_i)$ is the best approximation of $y_i$.\\
 $h*$ is \textbf{consistent} with the dataset $D$ iff:
-\[h*(x_i)= \phi(x_i),\ \forall x in D\]
+$$h*(x_i)= \phi(x_i),\ \forall x in D$$
 
-\subsection{Evaluation/Estimators}
+\subsection{Evaluation and Estimators}
 
 \paragraph{True Error}
-Given an hypothesis $h$ that approximates a target function $\phi $ the \textbf{true error} is the probability that $h(x) \new \phi(x)$:
-\[error_t(h) \equiv P(h(x)\neq \phi(x))\]
+Given an hypothesis $h$ that approximates a target function $\phi $ the \textbf{true error} is the probability that $h(x)  \phi(x)$:
+$$error_t(h) \equiv P(h(x)\neq \phi(x))$$
 Cannot be computed.
 
 \paragraph{Sample Error}
@@ -56,7 +56,7 @@ Partition the dataset $D$ into $k$ subsets $D: \braces{S_1,S_2,...,S_k}$. Use on
 \item \textbf{Accuracy}= 1- error rate
 \item \textbf{Recall}= $\frac{TP}{TP+FP}$
 \item \textbf{Precision}=$\frac{TP}{TP+FP}$
-\item \textbf{F1-score}=$\frac{2 \cdot Precision * Recall}}{Precision + Recall}$
+\item \textbf{F1-score}=$\frac{2 \cdot Precision * Recall}{Precision + Recall}$
 \item \textbf{Confusion Matrix}: miss - classification rate between classes $C_j,C_i$.
 \end{itemize}
 
