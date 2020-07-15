@@ -1,9 +1,9 @@
 
 \newcommand{\argmaxs}[2]{\arg \max_{#2}{#1}}
 
-\section{Exercises}
+\chapter{Exercises}
 
-\subsection{Bayes}
+\section{Bayes}
 
 \subsubsection{Ex 1) Naive Bayes Classifier}
 
@@ -29,7 +29,7 @@ We must estimate $P(c_j)$ and $P(w_i|c_j)$ using multinomial distribution, then 
 \[V_{NB}=\argmaxs{P(c_j)\prod_{i=1}^{lenght(d)}P(w_i|c_j,D)}{c_j \in C}\]
 
 
-\subsubsection{Ex2) MAP, ML, optimality}
+\subsubsection{Ex 2) MAP, ML, optimality}
 \begin{figure}[H]
     \centering
    \includegraphics[scale=0.5]{exercises/bayes/ex2.png}
@@ -53,7 +53,7 @@ That is we get the class which yields the higher sum of two elements: the probab
 An example could be the classification ????
 
 
-\subsubsection{Ex3) ML}
+\subsubsection{Ex 3) ML}
 \begin{figure}[H]
     \centering
    \includegraphics[scale=0.5]{exercises/bayes/ex3.png}
@@ -93,7 +93,7 @@ $$P(C_1|x)=P(x|C_1)P(C_1)=\sigma(\alpha)$$
 \paragraph{Model Parameters}
 The model parameters are defined by $N(x;\mu_1, \Sigma)$, so we have 2 means ($\mu_1,\mu_2$) and 4 others since $\Sigma$ has dimension $2 \times 2$ and it's the same for both classes. So we get a total of 6 parameters.
 
-\subsection{MDP, RL}
+\section{MDP, RL}
 \subsubsection{Ex 1) Definitions}
 
 \begin{figure}[H]
@@ -161,6 +161,7 @@ An MDP has the four components:
 
 
 
+
 \subsubsection{Ex 3) Exercise}
 
 \begin{figure}[H]
@@ -200,9 +201,9 @@ Where:
 
 
 
-\subsection{Linear Regression}
+\section{Linear Regression, Classification}
 
-\subsubsection{Ex1) Sequential vs Batch }
+\subsubsection{Ex 1) Sequential vs Batch }
 
 \begin{figure}[H]
     \centering
@@ -232,7 +233,7 @@ Where:
 \item $\phi(x_n)$ : is a non linear transformation of the input vector
 \end{itemize}
 
-\subsubsection{Ex2) Logistic Regression }
+\subsubsection{Ex 2) Logistic Regression }
 
 \begin{figure}[H]
     \centering
@@ -252,7 +253,7 @@ The parameters to be learn are just 3, 2 for the attributes + the bias term.
 The cross-entropy error function of the kind:
 $$E(w)=-ln(p(t|w))$$
 
-\subsubsection{Ex3) Exercise }
+\subsubsection{Ex 3) Exercise }
 
 \begin{figure}[H]
     \centering
@@ -269,13 +270,7 @@ The training algorithm can be a simple SDG.
 To reduce overfitting a regularization term can be introduced during the model updates .
 
 
-
-
-
-\subsection{Linear classification}
-
-
-\subsubsection{Ex 1}
+\subsubsection{Ex 4) Classification}
 
 
 \begin{figure}[H]
@@ -299,9 +294,9 @@ Unfortunately, least squares solutions lack robustness to outliers and are highl
 \end{figure}
 The left plot shows data from two classes (red crosses and blue circles) with the decision boundary found by least squares (magenta) and by the logistic regression model (green). The right plot shows the corresponding results obtained when extra data points (outliers) are added at the bottom left of the diagram.
 
-\subsection{K-NN}
+\section{K-NN}
 
-\subsubsection{Ex1)}
+\subsubsection{Ex 1)}
 
 \begin{figure}[H]
     \centering
@@ -332,7 +327,7 @@ with:
 
 
 
-\subsubsection{Ex2)}
+\subsubsection{Ex 2)}
     \begin{figure}
        \centering
 
@@ -359,7 +354,7 @@ Again, you just need to check which points are closer to the circle.
 
 
 
-\subsection{Tree}
+\section{Tree}
 
 \subsubsection{Ex 1) Tree classification}
 \begin{figure}[H]
@@ -475,9 +470,9 @@ So we choose the attribute with the most info gain as our root one, Furniture. F
     \includegraphics[scale=0.6]{exercises/tree/ex3tree.png}
 \end{figure}
 
-\subsection{Definitions}
+\section{Definitions}
 
-\subsubsection{Ex1) Unsupervised vs supervised}
+\subsubsection{Ex 1) Unsupervised vs supervised}
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.75]{exercises/definitions/ex1.png}
@@ -495,7 +490,7 @@ Unsupervised learning uses techniques such as clustering, representation learnin
  
 On the other hand, supervised learning  intends to infer a conditional probability distribution $p_X(x|y)$ conditioned on the label $y$ of input data; unsupervised learning intends to infer an a priori probability distribution $P_X(x)$ . Compared to supervised learning where training data is labeled with the appropriate classifications, models using unsupervised learning must learn relationships between elements in a data set and classify the raw data without "help."
 
-\subsubsection{Ex2) Unsupervised}
+\subsubsection{Ex 2) Unsupervised}
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.8]{exercises/definitions/ex2.png}
@@ -522,7 +517,7 @@ Steps for k-means:
 \end{enumerate}
 
 
-\subsubsection{Ex3) Confusion matrix }
+\subsubsection{Ex 3) Confusion matrix }
 
 
 \begin{figure}[H]
@@ -576,7 +571,7 @@ The percentage table is reported in \ref{tab:perc}, which is the same as the abs
 The accuracy is simply the sum of the elements on the diagonal of the percentage table. So for this example $75\%$
 
 
-\subsubsection{Ex4)K-fold }
+\subsubsection{Ex 4) K-fold }
 
 
 \begin{figure}[H]
@@ -601,9 +596,9 @@ You can extend the method in the following way:
 \item average the results
 \end{itemize}
 
-\subsection{ANN}
+\section{ANN}
 
-\subsubsection{Ex1}
+\subsubsection{Ex 1}
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.8]{exercises/ann/ex1.png}
@@ -668,7 +663,7 @@ Stochastic Gradient Descent updates the weight parameters after evaluation of th
 \end{itemize}
 
 
-\subsubsection{Ex2) Deep FNN}
+\subsubsection{Ex 2) Deep FNN}
 
 \begin{figure}[H]
     \centering
@@ -690,7 +685,7 @@ $$g(\alpha)=max(0,\alpha)$$
 The cost function will be the ML:
 $$J(\theta)=-ln(P(t|x,\theta))$$
 
-\subsubsection{Ex3) BackProp, SGD}
+\subsubsection{Ex 3) BackProp, SGD}
 
 \begin{figure}[H]
     \centering
@@ -721,7 +716,7 @@ The backprop :
 \item update the weights accordingly
 \end{enumerate}
 
-\subsubsection{Ex4) Dimension}
+\subsubsection{Ex 4) Dimension}
 
 \begin{figure}[H]
     \centering
@@ -745,7 +740,7 @@ Where $f$ is the activation function.\\
 The final outputs is computed as follows:
 $$y=\sum_i f_{out}(a_i)$$
 
-\subsubsection{Ex5) Perceptron}
+\subsubsection{Ex 5) Perceptron}
 
 \begin{figure}[H]
     \centering
@@ -791,7 +786,7 @@ Backprop can be affected by local minima, to avoid it  you can add random starti
 Again, yes. \\
 Overfitting may affect backprop, but you can use any kind of regularization like dropout, data augmentation, early stopping...
 
-\subsection{SVM}
+\section{SVM}
 
 
 \subsubsection{Ex 1) Slack variables}
@@ -855,7 +850,7 @@ svm is better because it finds the best hyperlplane that maximize the the distan
 The svm works even for non linearly separable dataset, using kernel trick. perceptron, instead, finds a lines that divides two classes, but its not optimal.
 
 
-\subsection{CNN}
+\section{CNN}
 
 
 \subsubsection{Ex 1) Dimensions}
@@ -952,10 +947,10 @@ The usual approach can be taken to prevent overfitting:
 \end{itemize}
 
 
-\subsection{Other}
+\section{Other}
 
 
-\subsubsection{ex1) Boosting}
+\subsubsection{Ex 1) Boosting}
 
 \begin{figure}[H]
     \centering

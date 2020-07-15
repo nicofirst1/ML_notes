@@ -1,0 +1,29 @@
+\section{CNN}
+In CNNs there are usually three stages:
+\begin{enumerate}
+\item Convolution: in which the dimension of the input is reduced and the most important features are extracted
+\item Activation function: usually non linear, allows the method to apply to non linearly separable datasets
+\item Pooling: an averaging of some sort (usually max or average) used to implement invariance to local translations. If applied with a stride $\ge 0$ then it reduces the dimension of the output.
+\end{enumerate}
+
+Since the convolution is done with a kernel (which can be seen as a rectangle taking as input some pixels and outputting one) of size $k$ the parameters become $k$ instead of $m \times n$ which is the size of the network. But since the kernel requires the input to have a certain dimension (to be applied to the borders too) we need to pad the images on the borders.
+
+\paragraph{Number of Parameters}
+The number of parameters of a layer $i$ depends on the previous output $i-1$ and the kernel size.\\
+With images of size $k \times  v \times d$ the third dimension $d$ is the feature map (in 2D dataset it's considered to be 1), a conv layer $i$ takes as input some data with $x_i$ feature map and outputs $y_i$ feature maps.\\
+Having a kernel of size $n \times m$ the parameters of layer $i$ are :
+$$|\theta_i|=(n\times m\times x_i +1)\times y_i$$
+It is trivial to see that the parameters are much less than in the FCN where we have:
+$$|\theta_i|=(k +1 ) \times v$$
+Usually $ k \gg n$ and $v \gg m$.
+
+\paragraph{Output Dimension}
+Here we want to know what is the dimension of the output of a conv layer. For this we need two additional parameters which are the padding $p$ and the stride $s$. The output is of dimension $w_i \times h_i \times d_i$ where $d$ is also called the feature map.\\
+The dimensions depend on the previous ones as follows:
+\begin{equation}
+\begin{aligned}
+w_i=\frac{w_{i-1}-n+2p}{s}+1\\
+h_i=\frac{h_{i-1}-m+2p}{s}+1\\
+d=d_i
+\end{aligned}
+\end{equation}

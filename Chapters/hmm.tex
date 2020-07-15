@@ -1,0 +1,59 @@
+\section{HMM and POMDW}
+If the states $x$ of a markov process are non-observable, but instead we have some observation $z$ tied to them we are dealing with a Hidden Markov Model [HMM].\\
+In this case the process is defined by:
+\begin{itemize}
+\item The \textbf{observation model}: a probability that a certain state is mapped with a specific observation $b_k(z_t)=P(z_t|x_t)$ 
+\item The \textbf{transition model}: $A_{ij}=P(x_t|x_{t-1})$
+\item an initial distribution $\pi_0=P(x_0)$ which define the probability that the model starts with the state $x_0$
+\end{itemize}
+
+\paragraph{Chain Rule}
+Since we are dealing with a model having the markov assumption (current observation only depends on past $N$ observation) we can extend this rule to apply to a series of state/obervation pair:
+$$ P(x_{0:T},z_{0:T})=\prod_{t=1}^Tp(z_t|x_t) \prod_{t=1}^Tp(x_t,x_{t-1})$$
+
+\paragraph{Forward Pass}
+So now we have a sequence of observation $z_0,z_1,\dots,z_T=[z]_{t=1}^T$ and we would like to know how likely this sequence is $P([z]_{t=1}^T)$.\\
+This probability  requires summing over \textbf{all possible hidden state values} at all times:
+\begin{equation}
+\begin{aligned}
+P([z]_{t=1}^T)=p(z_0,z_1,\dots, z_T; x_0,x_1,\dots,x_T)+p(z_0,z_1,\dots, z_T; x_1,x_2,\dots,x_T)+\dots\\
++p(z_0,z_1,\dots, z_T; x_{T-1})+p(z_0,z_1,\dots, z_T; x_T)=\sum_{n=0}^Np([z]_{t=1}^T,[x_n]_{t=1}^T)
+\end{aligned}
+\end{equation}
+
+Considering the first term we can apply the chain rule to get :
+$$p(z_0,z_1,\dots, z_T; x_0,x_1,\dots,x_T)=P(z_{0:T};x_{0:T})=\prod_{t=1}^Tp(z_t|x_t) \prod_{t=1}^Tp(x_t,x_{t-1})$$
+So the previous equation becomes:
+ $$P([z]_{t=1}^T)=\sum_{n=0}^Np([z]_{t=1}^T,[x_n]_{t=1}^T=\sum_{n=0}^N P(x_0)\prod_{t=1}^Tp(z_t|x_t) \prod_{t=1}^Tp(x_t,x_{t-1})$$
+ Which is a lot of calculation to do!\\
+ 
+ But if we set  $p([z]_{t=1}^T,x=k)=\alpha_T^k$ we can rewrite the above equation as:
+ $$P([z]_{t=1}^T)=\sum_k\alpha_T^k$$
+ Which gives the forward step as:
+ \begin{enumerate}
+ \item Initialize $\alpha_1^k=P(z_1|x_1=k)p(x_1=k)$ for all k
+ \item for $t=2,\dots,T$ estimate 
+ $$a_t^k=p(z_t|x_t=k)\sum_i \alpha_{t-1}^ip(x_t=k|x_{t=1}=i)$$
+ \item terminate when 
+ $$P([z]_{t=1}^T)=\sum_k\alpha^k_t$$
+  \end{enumerate}
+
+ \paragraph{Backward step}
+ Now we want to find the probability that the hidden state $x$ at time $t$ was equal to $k$:
+ $$P(x_t=k|[z]_{t=1}^T)=P(z_1,\dots,z_t,x_t=k)P(z_{t+1},\dots,z_T|x_t=K)=\alpha^k_t\beta_t^k$$
+ So now we compute the backward algo with:
+ \begin{enumerate}
+ \item initialize $\beta_T^k=1$ for all $k$
+ \item for $t=T-1,\dots,t$ do:
+ $$\beta_t^k=\sum_i P(x_{t+1}=1|x_t=k)P(z_{t+1}|z_{t+1}=i)\beta^i_{t+1}$$
+ \item ternimate at:
+ $$P(x_t=k,[z]_{t=1}^T)=\alpha^k_t\beta^k_t$$
+ \end{enumerate}
+ 
+ \subsection{POMDP}
+ In a Partially Obervable MDP we cannot see the states, so we can use a belief $b(x)$ which is a probability distribution over the states.\\
+ Given a current belief state $b$, an action $a$ and an observation $z'$, we want to compute the next belief state $b'(x')$:
+ $$b'(x')=P(x'|b,a,z')=\frac{P(z'|x'b,a)P(x'|b,a}{P(z'|b,a)}=\frac{P(z'|x',a)\sum_{x\in X}P(x'|b,a,x)P(x|b,a)}{P(z'|b,a)}$$
+ 
+
+ 

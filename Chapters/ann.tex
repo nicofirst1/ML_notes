@@ -1,0 +1,83 @@
+\section{Artificial Neural Network}
+
+\subsection{FeedForward NN}
+
+There are no loops in this NN, the final function is a composition of multiple functions $g$ and parameters $\theta$ (one for each layer $m$):
+$$f(X,\theta)=g_m(g_{m-1}(\dots(g_1(x,\theta_1)\dots)\theta_{m-1})\theta_m)$$
+These many functions can tackle non-convex problems contrary to linear or kernel methods.\\
+
+\paragraph{Depth}
+The depth of a FNN is given by the number of hidden layers. With enough hidden layer you can  approximate any Borel measurable function.
+
+\paragraph{Width}
+Is the number of units (neurons) in each layer, with enough units you can approximate any function but having a deeper FNN is easier to train.
+
+
+
+\paragraph{Output activation Functions}
+These functions are tied to the output of the FNN, so they are dependent of the problem at hand and shape the cost function. Since they come after the hidden unit output $h_i$, they will show such parameter in their input.\\
+They change together with the problem requirement:
+\begin{itemize}
+\item Regression: we use the identity function: $y=W^th+b$
+\item Binary classification: sigmoid is used: $y=\sigma(w^th+b)$
+\item  Multi-class classification= softmax: $y_i=softmax(\alpha)_i=\frac{e^\alpha_i}{\sum_j e^\alpha_j}$
+\end{itemize}
+
+
+\paragraph{Loss Functions}
+The loss function is the cost function used for training. The value of such functions is simply the natural logarithm $ln$  of the output activation function.\\
+Recall the ML in which we wanted the class which maximized $P(C_i|x,D)$, if we use the same principle here we get the \textbf{cross-entropy} loss function:
+$$J(\theta)=-ln(P(t|x,\theta))$$
+
+Which changes depending on the problem at hand,   In the following cases $\alpha=w^th+b$
+\begin{itemize}
+\item Regression: then $P(t|x)=N(t|y,\beta^{-1})\to J(\theta)=(t-f(x,\theta))^2/2$ so the cost function becomes the mean square error.
+\item Binary classification: $J(\theta)=softplus((1-2t)\alpha$ becomes a Bernoulli Distribution
+\item Multi-class classification= $J(\theta)_1=-ln\ softmax(\alpha)_1$ becomes a Multinomial distribution.
+\end{itemize}
+
+\paragraph{Hidden activation functions}
+In this case the activation function can be diverse for each neuron.
+\begin{itemize}
+\item Rectified linear units (ReLU): $g(\alpha=max(0,\alpha$ which is easy to optimize but not differentiable at 0.
+\item Sigmoid $g(\alpha)=\sigma(\alpha)$ and hyper tan $g(\alpha)=thanh(\alpha)$, both are:
+	\begin{itemize}
+	\item Easy to saturate since there is no logarithm at the output
+	\item slow
+	\item usefull for RNN and autoencoders
+	\end{itemize}
+\end{itemize}
+
+\paragraph{Backprop}
+Since the error is estimated at the end of the FNN on the outputlayer, but he have multiple parameters $\theta$ which need to be updated, we must propagate the error back trough the network.\\
+For this reason we compute the gradient of the cost function with respect to each parameter using the chain rule which states that, having $z=f(g(x))$ (similar to a network having one hidden layer) the gradient of z with respect to x is:
+$$\frac{dz}{dx}=\frac{dz}{dy}\frac{dy}{dx}$$
+
+\subsection{Learning Algorithms}
+Since the backprop is just a method to compute the gradient (not learn) there are various other algo for this purpose.
+
+\paragraph{Stocastic Gradient Descent}
+Using a learning rate $\eta$ these method computes the gradient on a subset (minibatch) of samples from the dataset. This gradient is computed with the backprop method and the parameters are updated with the following formula:
+$$\theta_i^{(k+1)}=\theta_i^{(k)}-\eta g_i$$
+Where $g$ is the value of the gradent with respect to $\theta_i$.
+
+\paragraph{SGD with momentum}
+To speed up the training an additional parameter $v$ can be used to increase or decrease the value of the update depending on the training iteration.
+
+\subsection{Regularization}
+Reduces overfitting
+
+\paragraph{Parameter norm penalties}
+You can add a regularizatoin term to the cost function in order to decrease the magnitude of each parameter, so no parameter saturates.
+
+\paragraph{Dataset Augmentation}
+Transform the dataset (image distortion, noise adding) in order to have more diverse samples.
+
+\paragraph{Early stopping}
+Stop iteration to avoid overfitting when train loss zeros out while test loss increases.
+
+\paragraph{Parameter sharing}
+Constrain subset of parameters to be the same. Decrease memory consumption, used principally in CNN to allow translation invariance.
+
+\paragraph{Dropout}
+Randomly remove network units with some probability.

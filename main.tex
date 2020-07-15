@@ -1,4 +1,4 @@
- \documentclass[10pt,a4paper]{article}
+ \documentclass[10pt,a4paper]{report}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -9,7 +9,7 @@
 \usepackage{caption}
 \usepackage{subfig}
 \usepackage[table,xcdraw]{xcolor}
-
+\usepackage{hyperref}
 
 \graphicspath{{images/}}
 
@@ -17,7 +17,8 @@
 \DeclareMathOperator*{\argmin}{arg\,min}
 
 \newcommand{\cmp}[1]{\bm{\tilde{#1}}}
-
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
 
 \author{Nicolò Brandizzi}
 \title{Machine Learning Summary}
@@ -25,6 +26,9 @@
 
 \begin{document}
 \maketitle
+\tableofcontents
+\newpage
+
 
 \input{Chapters/intro.tex}
 \newpage
@@ -32,11 +36,32 @@
 \input{Chapters/bayes.tex}
 \newpage
 
-\input{Chapters/linear_classification.tex}
+\input{Chapters/linear_models.tex}
 
 \newpage
 \input{Chapters/probabilistic_classification.tex}
 
+\newpage
+\input{Chapters/hmm.tex}
+
+
+\newpage
+\input{Chapters/dim_reduction.tex}
+
+
+
+\newpage
+\input{Chapters/kernel.tex}
+
+
+
+\newpage
+\input{Chapters/ann.tex}
+
+\newpage
+\input{Chapters/cnn.tex}
+
+\newpage
 \newpage
 \input{Chapters/exams.tex}
 

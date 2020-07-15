@@ -1,0 +1,64 @@
+\section{Dimensionality Reduction}
+
+\paragraph{Latent Variable}
+Usually, in a dataset with  high dimensional data, the difference between the samples can be related to a distortion regarding fewer dimensions than the ones making up the sample itself. For example, in a 2D image undergoing a one degree of freedom rotation the latent variable would be $1 < 2$.\\
+
+\subsection{PCA} 
+Check out \hyperlink{https://www.youtube.com/watch?v=FgakZw6K1QQ}{this video} for a detailed explanation of PCA.\\
+
+\paragraph{Steps}
+The main goal of PCA is to find a line $u$ which best separates the projected points $x$ of the dataset. To find this line we need to :
+\begin{enumerate}
+\item Find the mean value of all the points $x=\hat{x}=\frac{1}{N}\sum_nx_n$
+\item Estimate the total variance as $S=\frac{1}{N}\sum_n(x_n-\hat{x})(x_n-\hat{x})^T$
+\item Maximize the projected variance $\max_{u}[u^TSu]$ 
+\end{enumerate}
+
+\paragraph{Solution}
+To find $u$ we derivate wrt $u$:
+$$S u=\lambda u \to u^TSu=\lambda$$
+Which means that $u$ must be the eigenvector of $S$ since $\lambda$ is its eigenvalue.\\
+So having the matrix $S$ the easiest thing is to find the eigenvector associated with the largest eigenvalue.
+
+\paragraph{Error Minimization}
+With the above solution we can rewrite some sample $x$ of dimension $D$ as $\tilde{x}$ of dimension $\tilde{D}<D$. This will inevitably lead to some error which we can estimate with:
+$$J=\frac{1}{N}\sum_n ||x_n-\tilde{x}_n||^2=\sum_{i=\tilde{D}+1}^D u_i^T S u_i=\sum_{i=\tilde{D}+1}^D \lambda_i$$
+So the error is the sum of all the discarded eigenvalues $\lambda_i$ after $\tilde{D}$.
+
+\subsection{Linear Latent Variable Model}
+How to estimate PCA efficently?
+
+\paragraph{Distributions}
+For this we assume that:
+\begin{itemize}
+\item The relationship between $x$ and its lower dimensional representation $\tilde{x}$ is linear and can be written as:
+$$x=W\tilde{x}+\mu$$
+\item $\tilde{x}$ has a gaussian distribution of the form $P(\tilde{x})=N(z,0,I)$
+\item The relationship between $x$ and $\tilde{x}$ is linear in the Gaussian space:
+$$P(x|\tilde{x})=N(x,W\tilde{x}+\mu,\sigma^2 I)$$
+\end{itemize}
+
+Then we have:
+\begin{itemize}
+\item Marginal Distribution $P(x)=N(x, \mu, C)$
+\item Posterior Distribution $P(\tilde{x}|X)=N(\tilde{x},M^{-1}W^T(x-\mu),\sigma^2 M)$
+\item $C=WW^T+\sigma^2I$
+\item $M=W^TW+\sigma^2I$
+\end{itemize}
+
+\paragraph{Maximum Likelihood}
+Since we have $P(x)$ and $P(\tilde{x}|X)$ we can use ML to estimate $W$ which depends on the $u$ as:
+$$\argmax_{W,\mu,\sigma}[ln P(X|W,\mu,\sigma^2)]$$
+
+\subsection{Autoencoders}
+
+These are NN with bottolnecks in the middle which learn to reconstruct their input by minimizing a sum-of-squares error.
+
+\paragraph{Generative}
+This kind of autoencoders focus on leargning the latent space structure.\\
+VAEs are an example which use an encoder to produce  a distribution and a decoder to produce sample from such distribution.\\
+Since the sampling operation is not differentiable they use a reparametrization 
+
+\paragraph{Generative}
+This kind focus on learning the distribution.\\
+GANs are an example which are basically an inverted CNN trained in an adversarial way 

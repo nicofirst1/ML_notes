@@ -1,0 +1,30 @@
+\section{Kernel}
+Kernels are just a type of similarity measures which can be applied in any circumstance. Since they are a similarity measure they take as input two variables and return a value:
+$$k(x_1,x_2)\in R$$
+Typically they are simmetric $k(x_1,x_2)=k(x_2,x_1)$ and non negative.
+
+\paragraph{Gram Matrix}
+Given a  linear model of the form $y(x,w)=w^tx$ we know that the optimal solution is given by :
+$$w*=X^T(XX^T+\lambda I)^{-1}t$$
+Where $X,t$ are the vector of samples and outputs.\\
+By setting $\alpha=(XX^T+\lambda I)^{-1}t$ we get:
+$$w*=X^T\alpha=\sum_n\alpha_nx_n$$
+So the linear model becomes:
+$$y(x,w)=w*^Tx=\sum_n\alpha_nx^T_nx$$
+As can be seen the last equation has two inputs $x_n,x$ so we can use a kernel $k(x_1,x_2)=x_1^Tx_2$ to get the same result:
+$$y(x,w)=w*^Tx=\sum_n\alpha_n k(x_n,x)$$
+If we now look into $\alpha$ we see that the term $XX^T$ (which we will  call $K$) can be also kernelized as:
+$$K=
+\begin{bmatrix}
+k(x_1,x_1) & \dots & k(x_1,x_N)\\
+\vdots & \ddots & \vdots\\
+k(x_1Nx_1) & \dots & k(x_N,x_N)\\
+\end{bmatrix}
+$$
+Which is called the Gram matrix.
+
+\paragraph{Kernel Trick}
+The thing we did above, substituting the inner producct $X^TX$ with the kernel $k(x^T,x)$ is called the kernel trick and can be applied to any $x$. But why is it useful?\\
+Having a linear model of the kind :
+$$y(x,w)=w*^Tx=\sum_n\alpha_nx^T_nx$$
+Shows that we actually do not need to know each datapoint but just its inner product $x^Tx$. So if our dataset is linearly separable in a higher dimension we do not need to compute the projection of each point $x_i$ into that higher dimension, but we just need to compute the inner product in that dimension. So we can use the kernel trick to get that product and ease the computation.
