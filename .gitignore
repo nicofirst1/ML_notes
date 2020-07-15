@@ -6,3 +6,7 @@
 *.gz
 
 .DS_Store
+
+*.out
+
+*.toc
