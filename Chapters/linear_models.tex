@@ -120,6 +120,35 @@ Where the
 \end{itemize}
 
 \subsection{Regression}
+In this case we want to predict a real value function, our model will be of the kind:
+$$y(x;w)=W^TX$$
+Where both $W,X$ are vectors of dimension $d$.\\
+There are some cases in which the dataset is non linear, so we can use a non linear function on $x$ of the kind:
+$$y(x;w)=W^T\phi (X)$$
+The function could be anything (e.g. $\phi(x)=x^2$) but we still have a linearity in the parameters $W$.
 
+\paragraph{Maximum Likelihood}
+If our target value $t$ is affected by noise $\eta$:
+$$t=y(X;W)+\eta$$
+We now have a probability that the target is correct given the regression. If we assume $\eta$ to be gaussian we have:
+$$P(t|X,W,\beta)=N(t|y(X;W),\beta^{-1})$$
+Where $\beta$ is the inverse of the variance.\\
+The only thing left is to seek that $t \in S$ which maximize this probability:
+\begin{equation}
+\begin{aligned}
+P(S|X,W,\beta)=\prod_n N(t_n|w^T\phi(x_n),\beta^{-1})=\\
+\sum_n ln[N(t_n|w^T\phi(x_n),\beta^{-1})]=\\
+-\beta \frac{1}{2}\sum_n[t_n-w^T \phi(x_n)]^2-\frac{N}{2}ln[2\pi\beta^{-1})
+\end{aligned}
+\end{equation}
  
+Since the second term is a constant we focus on the first one:
+$$E_D(w)= \frac{1}{2}\sum_n[t_n-w^T \phi(x_n)]^2$$
+Which we want to minimize.
+
+\paragraph{Regularization}
+To control overfitting we can set a regularization factor on the parameters of the kind:
+$$E_W(w)=\frac{1}{2}W^TW$$
+So that the minimization becomes:
+$$min[E_D(w)+\lambda E_W(w)]$$
 

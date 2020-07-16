@@ -1,0 +1,32 @@
+\section{MDP and RL}
+In a dynamic system representation we have:
+\begin{itemize}
+\item A set of states $X$
+\item A set of actions $A$
+\item a transition function $\delta$  which can be 
+\begin{itemize}
+\item deterministic $\delta : X\times A \to X$
+\item non deterministic $\delta : X\times A \to 2^X$
+\item stochastic $\delta : P(x_{t+1}|x_t,a_t)$
+\end{itemize}
+\item A reward function $r$ which can be:
+\begin{itemize}
+\item deterministic $r: X \times A \to R$
+\item non deterministic $r: X \times A \times X \to R$
+\end{itemize}
+\end{itemize}
+
+\paragraph{Markov decision process}
+A MDP follows the Markov properties which state:
+\begin{itemize}
+\item Once the current state is known, the evolution of the dynamic system does not depend on the history of states, actions and observations $x_{t+1}=\delta(x_t,a_t)$.
+\item The current state contains all the information needed to predict the future.
+\item Future states are conditionally independent of past states and past observations given the current state.
+\item The knowledge about the current state makes past, present and future observations statistically independent.
+\end{itemize}
+
+\paragraph{Policy}
+A policy $\pi$ is some kind of behavior to take in some state $x_t$, in order to maximize the reward $r_t$.\\
+The optimality of a reward is defined with respect to maximizing the (expected value of the) cumulative discounted reward:
+$$V^{\pi}(x_1)=E[r_1+\gamma r_2+\gamma^2 r_3+\dots]$$
+Where $\gamma \in [0,1]$ is the discount factor.

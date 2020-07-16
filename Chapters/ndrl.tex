@@ -1,0 +1,39 @@
+\section{Non-deterministic RL}
+When the problem is non deterministic we know that the transition function $\delta(x,a)$ is some probability related to the current state and action $P(x_{i+1}|x_i,a_i)$.\\
+
+To define our value function, we must take the expected values:
+$$V^{\pi}(x)\equiv E(r_i +\gamma r_{i+1}+\gamma^2 r_{i+2}+ \dots)$$
+
+When we consider the reward function, $r(x,a)$, to be non deterministic too, then we must include it in the value function which we now call $Q$:
+$$Q(x,a)=E[r(x,a)+\gamma V^*(\delta(x,a))]=\dots=E[r(x,a)]+\gamma \sum_{x_{i+1}}P(x_{i+1}|x_i,a)\cdot \max_{a_{i+1}}Q(x_{i+1},a_{i+1})$$
+Where:
+\begin{itemize}
+\item $E[r(x,a)]$ is the expected reward
+\item $P(x_{i+1}|x_i,a)$ is the probability introduced above with the transition function
+\item $\max_{a_{i+1}}Q(x_{i+1},a_{i+1})$ is finding the action which maximizes the future rewards
+\end{itemize}
+Where now the optimal policy shift to:
+$$\argmax_{a\in A}Q(x,a)$$
+
+\subsection{K-Armed bandit problem}
+The classic (stocastic) version of the k-armed bandit problem sees k slot machines, each one having some gaussian distribution of winning $N(\mu_i,\sigma_i)$ and the goal is to earn the most money.\\
+In this context a RL agent can either:
+\begin{itemize}
+\item Perform x trials on each machine, estimate the mean winning rate and then choose the one with the highest.
+\item Adopt an $\epsilon$-greedy strategy in which they play at random with prob $\epsilon$ and choose the optimal policy with $1-\epsilon$
+\end{itemize}
+
+In this case the training rule would be:
+$$Q_n(a_i) \leftarrow Q_{n-1}(a_i)+ \alpha[r_{t+1}(a_i) - Q_{n-1}(a_i)]$$
+Where 
+\begin{itemize}
+\item $\alpha=1/v_{n-1}(x_i,a_i)$
+\item $v_{n-1}(x_i,a_i)$ is the number of execution of action $a_i$ in state $x_i$, up to time $n-1$
+\end{itemize} 
+
+\paragraph{Non-deterministic case}
+But if the probability $\mu_i$ changes during the algorithm then the above solution would not work:
+\begin{itemize}
+\item the first would fail because $\mu_i$ can change after the $x$ trials
+\item the $\epsilon$-greedy strategy will not reach an optimal value
+\end{itemize}

@@ -1,11 +1,56 @@
 
 
+\section{Probabilistic Classification}
 
-\section{Probabilistic Generative Models}
+\subsection{ Generative Models}
+The generative models focus on estimating the probability of a class given a sample $P(c_i|x)$ with the bayes theorem $P(x|c_i)$.\\
 Consider the case of two classes $C_1,C_2$, we have that:
 \[P(C_1|x)=\frac{P(x|C_1)P(C_1)}{P(x|C_1)P(C_1)+P(x|C_2)P(C_2)}\]
 with:
 \[\alpha=ln\frac{P(x|C_1)P(C_1)}{P(x|C_2)P(C_2)}\]
 We can write:
 \[\sigma(\alpha)=\frac{1}{1+exp(\alpha)}\]
-Which is the sigmoid function.
+Which is the sigmoid function.\\
+At this point we can assume that every calss has the same covariance matrix for a certain gaussian distribution:
+$$P(x|c_i)=N(x|\mu_i,\Sigma)$$
+So that our $\alpha$ becomes:
+$$\alpha=w^tx+w_0$$
+with:
+\begin{equation}
+\begin{aligned}
+w=\Sigma^{-1}(\mu_1-\mu_2)\\
+w_0=-\frac{1}{2}\mu_1^T \Sigma^{-1}\mu_1 +\frac{1}{2}\mu_2^T \Sigma^{-1}\mu_2+ ln\frac{P(c_1)}{P(c_2)} 
+\end{aligned}
+\end{equation}
+For a multiclass problem the equation becomes:
+$$P(c_k|x)=\frac{\exp(a_k)}{\sum_j \exp(a_j)}$$
+
+\paragraph{Maximum Likelihood for K classes}
+Since we are dealing with the bayes theorem we can use ML for a multiclass problem with K classes. For a class $k$ we have:
+\begin{equation}
+\begin{aligned}
+P(c_k)=\frac{N_k}{N}\\
+P(x|c_k)=N(x|\mu_k,\Sigma)\\
+\mu_k=\frac{1}{N_k}\sum_n t_{n,k}x_n\\
+\Sigma=\sum_k \frac{N_k}{N}S_k\\
+S_k=\frac{1}{N_k}\sum_n  t_{n,k}(x_n-\mu_k)(x_n-\mu_k)^T
+\end{aligned}
+\end{equation}
+
+\subsection{Discriminative Models}
+Differently from the previous one it tries to estimate $P(c_i|x)$ directly from the model.
+
+\paragraph{Logistic Regression}
+I tries to compute the likelihood unction as:
+$$p(t|w)=\prod_n y_n^{t_n}(1-y_n)^{t_n}$$
+Which is then optimized using the cross-entropy function:
+$$w^*=\argmin_w E(w)\quad E(w)=-\ln p(t|w)$$
+
+\paragraph{Iterative re-weighted last squares}
+The minimization can be solved with the IRLS using:
+\begin{itemize}
+\item $R$ a diagonal matrix where the elements are $R_{nn}=y_n(1-y_n)$
+\item A hessian matrix $H=X^TRX$
+\end{itemize}
+Then the gradient descend step becomes:
+$$w \leftarrow w-H^{-1}\nabla E(w)$$

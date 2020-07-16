@@ -1,0 +1,39 @@
+\section{Multiple Learner}
+The idea is : instead of training a complex learner/model, train many different learners/models and then combine their results.
+
+\paragraph{Voting}
+Here the models are trained in parallel on the same dataset $D$ and then take the outputs are summed (for regression) or chosen based on the most voted class (for classification).
+
+\paragraph{Bagging}
+In here he separate the dataset $D$ into $M$ parts (called bootstraps), then we train a different learner for each part and average the results.
+
+\subsection{Boosting}
+Contrary to the other methods, the boosting train weak classifiers sequentially. This is because some weak learner at iteration $i$ will output a miss-classified $y_{i,n} \ne t_n$ associated with a point $x_n$ and its weight $w_{i,n}$ . During the next training iteration the learner will find the weight associated with the point $x_n$  greater than it was before $w_{i+1,n} >w_{i,n}$ so that this learner learns to give more importance tho this point and avoid future miss-classifications.
+
+\paragraph{AdaBoost}
+AdaBoost works as just described using decision trees with a signle split.\\
+
+The advantages are:
+\begin{itemize}
+\item fast, simple
+\item no prior  about base learner
+\item no parameter to tune
+\item can be combined with any method
+\end{itemize}
+
+ The algorithm works as follows:
+\begin{enumerate}
+\item having a Dataset $D$ of size $N$ you want to train $M$ learners. Each one will have its own weight array $w_m$ of size $N$ (one value for each data point)
+\item Initialize all the weights to  $w_m=1/N$.
+\item Start from the first learner until the last one $M$ and do:
+\item Train the learner minimizing the weighted error function :
+$$J_m=\sum_n w_{m,n}I(e)$$
+Where $e=y_m(x_n) \ne t_n \in \{0,1\}$ is the correctness of the classification
+\item Evaluate the error for this classifier as:
+$$\eta_m=\frac{J_m}{w_m},\quad \alpha_m=ln[\frac{1-\eta_m}{\eta_m}]$$
+Where $\alpha_m$ will be used later to estimate the grade of correctness
+
+\item Generate the weight for the next learner $m+1$ as:
+$$w_{m+1,n}=w_{m,n}\cdot \exp[\alpha_m I(e)]$$
+\end{enumerate}
+As can be seen the next weight $w_{m+1,n}$ associate with a specific datapoint $x_n$ will be updated by $\alpha_m$ iff the classification is incorrect $ I(e)=0\ if\ y_m(x_n) = t_n$.
