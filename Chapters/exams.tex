@@ -5,7 +5,7 @@
 
 \section{Bayes}
 
-\subsubsection{Ex 1) Naive Bayes Classifier}
+\subsection{Naive Bayes Classifier}
 
 \begin{figure}[H]
     \centering
@@ -35,7 +35,7 @@ We must estimate $P(c_j)$ and $P(w_i|c_j)$ using multinomial distribution, then 
 \[V_{NB}=\argmaxs{P(c_j)\prod_{i=1}^{lenght(d)}P(w_i|c_j,D)}{c_j \in C}\]
 
 
-\subsubsection{Ex 2) MAP, ML, optimality}
+\subsection{MAP, ML, optimality}
 \begin{figure}[H]
     \centering
    \includegraphics[scale=0.5]{exercises/bayes/ex2.png}
@@ -59,7 +59,7 @@ That is we get the class which yields the higher sum of two elements: the probab
 The applicability should be for simple tasks such as predicting the gender of a dataset consisting of heights and weights.
 
 
-\subsubsection{Ex 3) ML}
+\subsection{ML}
 \begin{figure}[H]
     \centering
    \includegraphics[scale=0.5]{exercises/bayes/ex3.png}
@@ -73,7 +73,7 @@ $$ML=\argmax_{h_i \in H}p(D|h)$$
 \paragraph{Comment}
 The ML returns the most probable hypo which then may or may not correctly classify the element.
 
-\subsubsection{Ex4) exercise}
+\subsection{Exercise}
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.5]{exercises/bayes/ex4.png}
@@ -100,7 +100,7 @@ $$P(C_1|x)=P(x|C_1)P(C_1)=\sigma(\alpha)$$
 The model parameters are defined by $N(x;\mu_1, \Sigma)$, so we have 2 means ($\mu_1,\mu_2$) and 4 others since $\Sigma$ has dimension $2 \times 2$ and it's the same for both classes. So we get a total of 6 parameters.
 
 \section{MDP, RL}
-\subsubsection{Ex 1) Definitions}
+\subsection{Definitions}
 
 \begin{figure}[H]
     \centering
@@ -149,7 +149,7 @@ Given:
 \end{itemize}
 We have that a HMM is made of $HMM=\braces{X,Z,\pi_0}$.
 
-\subsubsection{Ex 2) Exercise}
+\subsection{Exercise}
 
 \begin{figure}[H]
     \centering
@@ -166,9 +166,7 @@ An MDP has the four components:
 \end{itemize}
 
 
-
-
-\subsubsection{Ex 3) Exercise}
+\subsection{Exercise}
 
 \begin{figure}[H]
     \centering
@@ -181,7 +179,7 @@ A RL problem includes an agent accomplishing a task according to an  MDP $(X, A,
 \paragraph{Main Steps}
 Givan an MDP the agent start executing random actions and saves the triple (state, action, reward) on a table. As the training continues the agent is able to map the current state to a saved triple, thus choosing the action which maximizes the reward.\\
 
-\subsubsection{Ex 4) K-armed bandit}
+\subsection{K-armed bandit}
 
 \begin{figure}[H]
     \centering
@@ -209,7 +207,7 @@ Where:
 
 \section{Linear Regression, Classification}
 
-\subsubsection{Ex 1) Sequential vs Batch }
+\subsection{Sequential vs Batch }
 
 \begin{figure}[H]
     \centering
@@ -239,7 +237,7 @@ Where:
 \item $\phi(x_n)$ : is a non linear transformation of the input vector
 \end{itemize}
 
-\subsubsection{Ex 2) Logistic Regression }
+\subsection{Logistic Regression }
 
 \begin{figure}[H]
     \centering
@@ -259,7 +257,7 @@ The parameters to be learn are just 3, 2 for the attributes + the bias term.
 The cross-entropy error function of the kind:
 $$E(w)=-ln(p(t|w))$$
 
-\subsubsection{Ex 3) Exercise }
+\subsection{Exercise }
 
 \begin{figure}[H]
     \centering
@@ -276,7 +274,7 @@ The training algorithm can be a simple SDG.
 To reduce overfitting a regularization term can be introduced during the model updates .
 
 
-\subsubsection{Ex 4) Classification}
+\subsection{Classification}
 
 
 \begin{figure}[H]
@@ -302,7 +300,7 @@ The left plot shows data from two classes (red crosses and blue circles) with th
 
 \section{K-NN}
 
-\subsubsection{Ex 1)}
+\subsection{Algo and example}
 
 \begin{figure}[H]
     \centering
@@ -324,7 +322,6 @@ with:
 \end{itemize}
 
 
-\paragraph{Exercise}
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.3]{knn.jpeg}
@@ -333,10 +330,9 @@ with:
 
 
 
-\subsubsection{Ex 2)}
-    \begin{figure}
-       \centering
-
+\subsection{Algo and exercise}
+    \begin{figure}[H]
+     \centering
     \includegraphics[scale=0.5]{exercises/k/ex2.png}
 \end{figure}
 
@@ -362,7 +358,7 @@ Again, you just need to check which points are closer to the circle.
 
 \section{Tree}
 
-\subsubsection{Ex 1) Tree classification}
+\subsection{Tree classification}
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.7]{exercises/tree/ex1.png}
@@ -388,7 +384,7 @@ Again, you just need to check which points are closer to the circle.
 \item $s_4$ is not consistent because of  5
 \end{itemize}
 
-\subsubsection{Ex 2) Tree overfitting}
+\subsection{Tree overfitting}
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.8]{exercises/tree/ex2.png}
@@ -398,9 +394,9 @@ Again, you just need to check which points are closer to the circle.
 The definition of overfitting is the production of an analysis that corresponds too closely or exactly to a particular set of data, and may therefore fail to fit additional data or predict future observations reliably
 
 \paragraph{Overfitting in Trees}
-To avoid overfitting we can stop growing the tree when data split not statistically significant  or grow a full tree, then post-prune
+To avoid overfitting we can stop growing the tree when data split  are not statistically significant  or grow a full tree, then post-prune
 
-\subsubsection{Ex 3) Tree exercise}
+\subsection{Tree exercise}
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.5]{exercises/tree/ex3.png}
@@ -478,7 +474,7 @@ So we choose the attribute with the most info gain as our root one, Furniture. F
 
 \section{Definitions}
 
-\subsubsection{Ex 1) Unsupervised vs supervised}
+\subsection{Unsupervised vs supervised}
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.75]{exercises/definitions/ex1.png}
@@ -496,7 +492,7 @@ Unsupervised learning uses techniques such as clustering, representation learnin
  
 On the other hand, supervised learning  intends to infer a conditional probability distribution $p_X(x|y)$ conditioned on the label $y$ of input data; unsupervised learning intends to infer an a priori probability distribution $P_X(x)$ . Compared to supervised learning where training data is labeled with the appropriate classifications, models using unsupervised learning must learn relationships between elements in a data set and classify the raw data without "help."
 
-\subsubsection{Ex 2) Unsupervised}
+\subsection{Unsupervised}
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.8]{exercises/definitions/ex2.png}
@@ -523,7 +519,7 @@ Steps for k-means:
 \end{enumerate}
 
 
-\subsubsection{Ex 3) Confusion matrix }
+\subsection{Confusion matrix }
 
 
 \begin{figure}[H]
@@ -539,7 +535,7 @@ A confusion matrix is a table layout that allows visualization of the performanc
 % Please add the following required packages to your document preamble:
 % \usepackage[table,xcdraw]{xcolor}
 % If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
-\begin{table}[]
+\begin{table}[H]
 \centering
 \begin{tabular}{|
 >{\columncolor[HTML]{EFEFEF}}l lll}
@@ -556,7 +552,7 @@ C3                       & 6                          & 21                      
 % Please add the following required packages to your document preamble:
 % \usepackage[table,xcdraw]{xcolor}
 % If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
-\begin{table}[]
+\begin{table}[H]
 \centering
 
 \begin{tabular}{|
@@ -577,7 +573,7 @@ The percentage table is reported in \ref{tab:perc}, which is the same as the abs
 The accuracy is simply the sum of the elements on the diagonal of the percentage table. So for this example $75\%$
 
 
-\subsubsection{Ex 4) K-fold }
+\subsection{K-fold }
 
 
 \begin{figure}[H]
@@ -591,7 +587,7 @@ The pseudocode for the kfold is the following:
 \begin{itemize}
 \item Choose k, and split the dataset D into k parts
 \item For every part, perform the training (with some algorithm L) onto k-1 parts and evaluate on the last one 
-\item average the k runs 
+\item average the error on k runs 
 \end{itemize}
 
 \paragraph{Comparing}
@@ -599,12 +595,14 @@ You can extend the method in the following way:
 \begin{itemize}
 \item Choose k, and split the dataset D into k parts
 \item for every part, train both learning methods on k-1 splits, and evaluate on the last one
-\item average the results
+\item define the error as the difference between the two errors, e.g. $e=e(L_A)-e(L_B)$
+\item average the result
+\item if $e<0 \to e(L_B)>e(L_A)$ so  $L_A$ is better (smaller error) 
 \end{itemize}
 
 \section{ANN}
 
-\subsubsection{Ex 1}
+\subsection{Size, Backprop, Overfitting}
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.8]{exercises/ann/ex1.png}
@@ -619,9 +617,11 @@ The architecture is the following
 \end{figure}
 
 \paragraph{Size of ANN}
-Since the network is a fully connected with $\mathcal{R}^8\rightarrow\mathcal{R}^6\to \mathcal{R}^4$ the network has:
-\[(8 \times 6)+(6\times 4)=69\]
-Parameters.
+Since the network is a fully connected with $\mathcal{R}^8\rightarrow\mathcal{R}^6\to \mathcal{R}^4$ the parameters in between layers $i$ and $j$ are estimated with:
+$$|\theta_{i,j}|=(size_i+1)\times size_j$$
+So for our network:
+$$|\theta_{1,2}|+|\theta_{2,3}|=(8 +1) \times 6+(6 +1) \times 4=82$$
+.
 
 
 
@@ -669,7 +669,7 @@ Stochastic Gradient Descent updates the weight parameters after evaluation of th
 \end{itemize}
 
 
-\subsubsection{Ex 2) Deep FNN}
+\subsection{Deep FNN}
 
 \begin{figure}[H]
     \centering
@@ -678,8 +678,26 @@ Stochastic Gradient Descent updates the weight parameters after evaluation of th
 
 
 \paragraph{Formalization}
-It is trivial to see that we need to FNN to perform a regression. The parametric form would be of the kind:
-$$y=f(x,\theta)$$
+It is trivial to see that we need to FNN to perform a regression.
+Our output will have the form:
+$$y=w_{out}^T\times h+b$$
+Where:
+\begin{itemize}
+\item $w_{out}$: are the weights associated with the output
+\item $h$ is the last hidden layer's output. It can also be seen as a concatenation of multiple functions.
+\item $b$ is the bias term
+\end{itemize}
+Since the requirements are for the FNN to be deep, but no depth is specified, we can use one hidden layer of the kind:
+$$h=\phi(x^TW+c_i)$$
+Where:
+\begin{itemize}
+\item $\phi$ is a non linearity of some kind (called activation function). We can take it to be $\phi(a)=\max(0,a)$
+\item $W$ is the weight matrix associated with the hidden unit(s).
+\item $c_i$ is another bias term 
+\end{itemize}
+
+So the final form for the model would be:
+$$y(x)=w_{out}^T\times \phi(x^TW+c_i)+b$$
 
 \paragraph{Activation functions}
 Since this is a regression problem the activation function will be the Identity function which is simply:
@@ -691,7 +709,7 @@ $$g(\alpha)=max(0,\alpha)$$
 The cost function will be the ML:
 $$J(\theta)=-ln(P(t|x,\theta))$$
 
-\subsubsection{Ex 3) BackProp, SGD}
+\subsection{BackProp, SGD}
 
 \begin{figure}[H]
     \centering
@@ -722,7 +740,7 @@ The backprop :
 \item update the weights accordingly
 \end{enumerate}
 
-\subsubsection{Ex 4) Dimension}
+\subsection{Dimension}
 
 \begin{figure}[H]
     \centering
@@ -730,14 +748,17 @@ The backprop :
 \end{figure}
 
 \paragraph{Dimension}
-You can just use the formula:
-$$dim=X*W+B$$
-Which states that the dimension is equal to the number of inputs times the weight matrix plus the biases.
-The size of the weight matrix is given by multiplying the nodes in the previous layer with the ones in the current one., while the biases are the number of nodes in the current layer.\\
+Since we are not caring about the number of parameters, but rather about the dimension of $W$ (the difference is the lack of a bias term), we can use the formula:
+$$W=Y_i\times X_{i+1}$$
+Which states that the dimension is equal to the product of:
+\begin{itemize}
+\item dimension  of the output $Y_i$ of the previous layer $i$
+\item with the dimension of the input  $X_{i+1} $ of the next layer
+\end{itemize}  
 With this we get:
-$$W_1=128+(128*50)+50=6706$$
+$$W_1=128*50 =6400$$
 While the output layer has:
-$$W_2=50+(50*10)+10=560$$
+$$W_2=50*10 =500$$
 
 \paragraph{Formula}
 The output of the hidden neurons are given by:
@@ -746,7 +767,7 @@ Where $f$ is the activation function.\\
 The final outputs is computed as follows:
 $$y=\sum_i f_{out}(a_i)$$
 
-\subsubsection{Ex 5) Perceptron}
+\subsection{Perceptron}
 
 \begin{figure}[H]
     \centering
@@ -755,8 +776,8 @@ $$y=\sum_i f_{out}(a_i)$$
 
 \paragraph{Classification}
 Given a set of inputs $X=x_1,x_2,\dots, x_n$ and a set of weights $W=w_1,w_2,\dots,w_n$ the perceptron classifies an input with:
-$$o(W\cdot X)$$
-where the function $o$ is 1 if $W\cdot X >0$ and 0 elsewhere.
+$$\sigma(W\cdot X)$$
+where the function $\sigma$ is 1 if $W\cdot X >0$ and 0 elsewhere.
 
 \paragraph{Training}
 The training comes by updating the weights as follows:
@@ -771,31 +792,10 @@ Where:
 The perception training can converge only if the data is linearly separable and $\eta$ is sufficiently small.
 
 
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.5]{exercises/ann/ex6.png}
-\end{figure}
-
-\paragraph{Size}
-Since we have $\mathcal{R}^8 \to \mathcal{R}^4$ the input has dimension 8 while the output has 4.\\
-So we can set the ANN to have 0 hidden units, thus just the input and output layer.\\
-Considering the biases the formula on the output layer is
-$$dim=X_{inputDim}+W_{(n-1)-layer\times n-layer}+B_{n-layer}$$
-Which is:
-$$dim=8+8\times 4 +4=44$$
-
-\paragraph{Backprop and Local minima}
-Backprop can be affected by local minima, to avoid it  you can add random starting weights or a bias term.
-
-\paragraph{Overfitting}
-Again, yes. \\
-Overfitting may affect backprop, but you can use any kind of regularization like dropout, data augmentation, early stopping...
-
 \section{SVM}
 
 
-\subsubsection{Ex 1) Slack variables}
+\subsection{Slack variables}
 
 \begin{figure}[H]
     \centering
@@ -808,13 +808,13 @@ Overfitting may affect backprop, but you can use any kind of regularization like
     \includegraphics[scale=0.6]{exercises/svm/ex1_sol1.png}
 \end{figure}
 The insensitive error function is reported in the above figure.\\
-The difficulty comes from the non differenciability of the $E$ function.
+The difficulty comes from the non differenciability of the $E$ (red) function.
 
 \paragraph{Slack Variables}
 The slack variables are introduced to relax the constraint from hard (no points closer than $\eta$ to the splitting plane) to soft (some points are allowed).
 
 
-\subsubsection{Ex 2) Maximal Margins}
+\subsection{Maximal Margins}
 
 \begin{figure}[H]
     \centering
@@ -837,7 +837,7 @@ Optimization problem for determining w (dimension $|X|$) transformed in an optim
 Efficient when $|X| < |D|$ (most of ai will be zero). Very useful when $|X|$ is large or infinite.
 
 
-\subsubsection{Ex 3) SVM vs Perceptron}
+\subsection{SVM vs Perceptron}
 
 \begin{figure}[H]
     \centering
@@ -859,7 +859,7 @@ The svm works even for non linearly separable dataset, using kernel trick. perce
 \section{CNN}
 
 
-\subsubsection{Ex 1) Dimensions}
+\subsection{Dimensions}
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.5]{exercises/cnn/ex1.png}
@@ -873,12 +873,11 @@ Given:
 \item $w_i$: the output width (first dimension)
 \item $h_i$: the output height (second dimension)
 \item $d_i$: the output color (third dimension)
-\item $w_i\times h_i\times d_1$: output dimension of layer i
-\item $n\times m$: the dimension of the kernel
+\item $w_i\times h_i\times d_i$: output dimension of layer i
+\item $n_i\times m_i$: the dimension of the kernel for conv $i$
 \item $\theta$: total number of parameters
 \item $y_i$: output feature map of layer i.
 \item $x_i$: input feature map of layer i.
-\item 
 \end{itemize}
 
 We have that the following hold for a CNN layer:
@@ -887,12 +886,12 @@ We have that the following hold for a CNN layer:
 w_i=\frac{w_{i-1}-n+2p}{s}+1\\
 h_i=\frac{h_{i-1}-m+2p}{s}+1\\
 d=y_i\\
-\theta_i=(n\cdot m \cdot x_i+1)\cdot  y_i 
+\theta_i=(n_i\cdot m_i \cdot x_i+1)\cdot  y_i 
 \end{aligned}
 \end{equation}
 
 For a fully connected layer:
-$$\theta_i=(n +1)\cdot m $$
+$$\theta_i=(x_i +1)\cdot y_i $$
 
 So, using the above equation we have:
 \begin{itemize}
@@ -939,10 +938,10 @@ So the output is of dimensions $78\times 24\times 128$ and the total number of w
 $$\theta=\theta_{c1}+\theta_{c2}=78720$$
 
 
-\subsubsection{Ex 2) Overfitting}
+\subsection{Overfitting}
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{exercises/cnn/ex1.png}
+    \includegraphics[scale=0.5]{exercises/cnn/ex2.png}
 \end{figure}
 
 The usual approach can be taken to prevent overfitting:
@@ -952,11 +951,45 @@ The usual approach can be taken to prevent overfitting:
 \item L1/L2 regularization.
 \end{itemize}
 
+\section{PCA}
+
+\subsection{Exercise}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.7]{exercises/other/ex1.png}
+\end{figure}
+
+\paragraph{Formula}
+The points  $x$ can be expressed in the basis of the PC $\hat{x}$ with a simple projection on the direction $u_i$:
+$$\hat{x}_n=\sum_i(x^T_nu_i)u_i$$
+
+\paragraph{Data description}
+Yes because even if in theory there are as many dimension as there are pixels in the image (assuming black/white), in practice you can fully recover every image using 3 dimensions: x, y of the center and an angle of rotation because images are all the same, so you need no extra info about the image itself, only about its position
+
+\subsection{Explanation,Algo }
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{exercises/pca/ex2.png}
+\end{figure}
+
+\paragraph{Dimension}
+The data dimensionality is $D=144$, since this is the total number of pixels.. On the other hand, the intrinsic dimensionality is just $D=3$ two for the coordinates and one for the angle rotation.
+
+\paragraph{Data projection}
+Since we already have the principal components we can just apply the projection formula:
+$$\hat{x}_n=\sum_i(x^T_nu_i)u_i$$
+
+\paragraph{Explanation}
+M should be at least equal to the number of intrinsic dimension but could also increase if there is a high enough gain in accuracy.
+
+
 
 \section{Other}
 
 
-\subsubsection{Ex 1) Boosting}
+\subsection{Boosting}
 
 \begin{figure}[H]
     \centering
@@ -979,18 +1012,9 @@ The output of the linear classifier is:
 \[Y_m(x)=sign(\sum_{m=1}^M\alpha_my_m(x))\]
 
 
-\subsubsection{Ex 2) PCA}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.5]{exercises/other/ex2.png}
-\end{figure}
-
-\paragraph{Dimension}
-The data dimensionality is $D=2$ since we are dealing with a $12\times 12$ square, but the intrinsic dimensionality is just $D=1$ since the same patter is rotated by different angles.
 
 
-\subsubsection{Ex 3) Unsupervised}
+\subsection{Unsupervised}
 
 \begin{figure}[H]
     \centering
@@ -1008,7 +1032,7 @@ Clustering of similar people based on movies they watched.
 The clustering based on k-means could cluster together people who like more horrors or action movies.
 
 
-\subsubsection{Ex 4) Gram, Kernel}
+\subsection{Gram, Kernel}
 
 \begin{figure}[H]
     \centering
@@ -1025,7 +1049,7 @@ having:
 \[\alpha=(K+\lambda I)^{-1}t\]
 
 
-\subsubsection{Ex 5) AutoEncoder}
+\subsection{AutoEncoder}
 Describe what is the architecture of an autoencoder and its purpose.
 
 \paragraph{Description}
@@ -1033,7 +1057,7 @@ The architecture of an autoencoder is similar to the one of a cnn, but flipped. 
 It is usually trained in an adversarial fashion to keep the supervision cycle closed.\\
 It's purpose is to encode a sparse representation (e.g. words) into a small vector (dimensionallity reduction)
 
-\subsubsection{Ex 6) Multiple Learners}
+\subsection{Multiple Learners}
 
 \begin{figure}[H]
     \centering
@@ -1041,27 +1065,33 @@ It's purpose is to encode a sparse representation (e.g. words) into a small vect
 \end{figure}
 
 \paragraph{Method}
-A method to achieve such results we can use the voting method in which we train each classifier on a subset of the dataset. For the prediction we take the most predicted class
+A method to achieve such results we can use the voting method in which we train each classifier in parallel on the trainset. For the prediction we take the most predicted class (for classification) or the sum of the predictions (for regression).
 
 \paragraph{Proprieties}
 A base propriety for each classifier is that they have to achieve a sufficient accuracy on their own. Implementing multi learners methods where the indiviual classifiers do not achieve a more than $10\%$ accuracy is not advised.
 
-\subsubsection{Ex 7) Gaussian Mixture models GMM}
+\subsection{Gaussian Mixture models GMM}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{exercises/other/ex7.png}
+    \includegraphics[scale=0.7]{exercises/other/ex7.png}
 \end{figure}
 
 \paragraph{Definition}
 A gaussian mixture model has the form:
-$$p(x|z)=\prod_k N(x,\mu_k,\Sigma_k)^{z_k}$$
-The parameters are given by $\mu_k, \Sigma_k$
+$$p(x)=\prod_k \pi_k N(x,\mu_k,\Sigma_k)$$
+The parameters are given by $\mu_k, \Sigma_k, \pi_k$
 
 \paragraph{Model size }
-Since $K=3$ there are 6 parameters: $\mu_1,\mu_2,\mu_3$ and $\Sigma_1,\Sigma_2,\Sigma_3$.
+Since $K=3$ the parameters are: 
+\begin{itemize}
+\item 3 means $\mu_1,\mu_2,\mu_3$ 
+\item 3 mixture intensities $\pi_1,\pi_2,\pi_3$ 
+\item 3 covariance matrices $\Sigma_1,\Sigma_2,\Sigma_3$. Notice that these matrices are $3\times 3$ each, so, in terms of parameters, they count as $36$ elements.
+\end{itemize}
+The total size of the model is $9$.
 
-\subsubsection{Ex 8) Generative vs Discriminative Probabilistic}
+\subsection{Generative vs Discriminative Probabilistic}
 
 \begin{figure}[H]
     \centering

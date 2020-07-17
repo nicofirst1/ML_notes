@@ -12,7 +12,10 @@ The depth of a FNN is given by the number of hidden layers. With enough hidden l
 \paragraph{Width}
 Is the number of units (neurons) in each layer, with enough units you can approximate any function but having a deeper FNN is easier to train.
 
-
+\paragraph{Number of Parameter}
+The number of parameters is estimated in between layers, so having a laryer $i$ with $n$ neurons and a layer $j$ with $m$ neurons the number of parameters are estimates as:
+$$ |\delta_{ij} = (n + 1) × m$$
+Where the $1$ term is introduced for the bias.
 
 \paragraph{Output activation Functions}
 These functions are tied to the output of the FNN, so they are dependent of the problem at hand and shape the cost function. Since they come after the hidden unit output $h_i$, they will show such parameter in their input.\\
