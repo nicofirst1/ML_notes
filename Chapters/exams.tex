@@ -14,8 +14,14 @@
 
 
 \paragraph{Naive description and difference}
-The naive bayes classifier maximizes the probability of an element $x$ belonging to a class $c_i$ given a hypo $h_j$. It does so using the  bayes theorem in the following way:
-$$C=\argmax_{c_i \in C}P(c_i|x,D) = \argmax_{c_i \in C}P(x| c_i,D)p(c_i|D)$$
+So the optimal one is equal to:
+$$c_{ob}=P(c_j|x,D)=\sum_h P(c_j|x,h)P(h|D)$$
+Which requires to estimate all the hypos probabilities.\\
+So this is where the naive classifiers comes into pay saying that the sample $x$ can be seen as a set of attributes $A=\{a_1,a_2,\dots, a_n\}$ which are \textbf{independent} from each other.\\
+It does so using the  bayes theorem in the following way:
+$$P(c_j|x,D)=P(c_j|A,D)=\frac{P(A|c_j,D)P(c_j|D)}{P(A|D)}=P(A|c_j,D)P(c_j|D)=P(c_j|D)\prod_i P(a_i|c_j,D)$$
+So now the classifiers becomes
+$$C_{NB}=\argmax_{c_i \in C}P(c_j|D)\prod_i P(a_i|c_j,D)$$
 Since the $P(x| c_i,D)$ factor can be difficult to compute when there are many attributes of $x$, the naive bayes classifier assumes that each attribute is independent, so that.
 
 \paragraph{Implementation }
@@ -50,7 +56,7 @@ $$C_{B}=\argmax_{c_i \in C}\sum_{h_j \in H} p(c_i| h_j,x)p(h_j|D)$$
 That is we get the class which yields the higher sum of two elements: the probability that the element $x$ is classified as $c_i$ by $h_j$ and the probability that $h_j$ in $D$.
 
 \paragraph{Practical use}
-An example could be the classification ????
+The applicability should be for simple tasks such as predicting the gender of a dataset consisting of heights and weights.
 
 
 \subsubsection{Ex 3) ML}
