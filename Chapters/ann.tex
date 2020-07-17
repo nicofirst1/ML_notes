@@ -32,14 +32,14 @@ $$J(\theta)=-ln(P(t|x,\theta))$$
 Which changes depending on the problem at hand,   In the following cases $\alpha=w^th+b$
 \begin{itemize}
 \item Regression: then $P(t|x)=N(t|y,\beta^{-1})\to J(\theta)=(t-f(x,\theta))^2/2$ so the cost function becomes the mean square error.
-\item Binary classification: $J(\theta)=softplus((1-2t)\alpha$ becomes a Bernoulli Distribution
+\item Binary classification: $J(\theta)=softplus((1-2t)\alpha)$ becomes a Bernoulli Distribution
 \item Multi-class classification= $J(\theta)_1=-ln\ softmax(\alpha)_1$ becomes a Multinomial distribution.
 \end{itemize}
 
 \paragraph{Hidden activation functions}
 In this case the activation function can be diverse for each neuron.
 \begin{itemize}
-\item Rectified linear units (ReLU): $g(\alpha=max(0,\alpha$ which is easy to optimize but not differentiable at 0.
+\item Rectified linear units (ReLU): $g(\alpha)=max(0,\alpha)$ which is easy to optimize but not differentiable at 0.
 \item Sigmoid $g(\alpha)=\sigma(\alpha)$ and hyper tan $g(\alpha)=thanh(\alpha)$, both are:
 	\begin{itemize}
 	\item Easy to saturate since there is no logarithm at the output
@@ -50,7 +50,7 @@ In this case the activation function can be diverse for each neuron.
 
 \paragraph{Backprop}
 Since the error is estimated at the end of the FNN on the outputlayer, but he have multiple parameters $\theta$ which need to be updated, we must propagate the error back trough the network.\\
-For this reason we compute the gradient of the cost function with respect to each parameter using the chain rule which states that, having $z=f(g(x))$ (similar to a network having one hidden layer) the gradient of z with respect to x is:
+For this reason we compute the gradient of the cost function with respect to each parameter using the chain rule which states that, having $z=f(g(x))$ where $y=g(x)$ (similar to a network having one hidden layer) the gradient of z with respect to x is:
 $$\frac{dz}{dx}=\frac{dz}{dy}\frac{dy}{dx}$$
 
 \subsection{Learning Algorithms}

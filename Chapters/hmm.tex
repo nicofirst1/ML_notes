@@ -53,7 +53,7 @@ So the previous equation becomes:
  \subsection{POMDP}
  In a Partially Obervable MDP we cannot see the states, so we can use a belief $b(x)$ which is a probability distribution over the states.\\
  Given a current belief state $b$, an action $a$ and an observation $z'$, we want to compute the next belief state $b'(x')$:
- $$b'(x')=P(x'|b,a,z')=\frac{P(z'|x'b,a)P(x'|b,a}{P(z'|b,a)}=\frac{P(z'|x',a)\sum_{x\in X}P(x'|b,a,x)P(x|b,a)}{P(z'|b,a)}$$
+ $$b'(x')=P(x'|b,a,z')=\frac{P(z'|x'b,a)P(x'|b,a)}{P(z'|b,a)}=\frac{P(z'|x',a)\sum_{x\in X}P(x'|b,a,x)P(x|b,a)}{P(z'|b,a)}$$
  
 
  

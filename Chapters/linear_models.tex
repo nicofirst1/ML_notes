@@ -24,7 +24,7 @@ The problem with using multiple classes is shown in the following figure.
 A solution is using a \textbf{K-Class Discriminant}:
 \[f: y_k(\bm{x})=\bm{w}_k^T\bm{x}+w_{k0}\]
 Where the decision boundary between two classes $C_j,C_k$, is given by:
-\[(\bm{w_j}-\bm{w_k})^T\bm{x}+(w_{j0}-w{k0})\]
+\[(\bm{w_j}-\bm{w_k})^T\bm{x}+(w_{j0}-w_{k0})\]
 which can be written in a more compact notation having:
 \begin{itemize}
 \item $\cmp{w_k}=\binom{w_{k0}}{\bm{w_k}}$
@@ -67,7 +67,7 @@ So we can use $dist=|\tilde{\mu_1} -\tilde{\mu_2}|$ as a measure of separation, 
 
 The problem is that it does not consider the variance between classes, so we need to normalize $dist$ by something proportional to the variance.\\
 Let's define the \textit{scatter} of some samples $z_1,...,z_n$ as :
-\[s=\sum_{i=1}^n(z_i-\mu_z)^2\]
+\[s=\sum_{i=1}^n(x_i-\mu_z)\]
 Which is:
 \[s_1^2=\sum_{x_i \in C_1}(x_i-\tilde{\mu_1})^2\]
 and the same for $s_2^2$
@@ -89,7 +89,7 @@ $$\frac{\partial E(\bm{w}) }{\partial w_i}=\sum_{n=1}^N(t_n-\bm{w}^Tx_n)(-x_{i,n
 Where $-x_{i,n}$ is the value of i-th feature.\\
 so we can update the weight $w_i$ by $w_{i+1}=w_i + \Delta w$, where:
 
-\[\Delta w=-\eta \frac{\partial E(\bm{w}) }{\partial w_i}=\sum_{n=1}^N(t_n-sign(\bm{w}^Tx_n)))-x_{i,n} \]
+\[\Delta w=-\eta \frac{\partial E(\bm{w}) }{\partial w_i}=\eta \sum_{n=1}^N(t_n-\bm{w}^Tx_n)x_{i,n} \]
 
 \begin{figure}[H]
 \includegraphics[scale=0.5]{perce_algh.png}
@@ -115,7 +115,7 @@ The distance between the hyperplane and the nearest data point from either set i
 Where the
 \begin{itemize}
 \item $\hat{h}=\bm{\hat{w}^Tx_n+\hat{w_0}}$ is the hyperplane
-\item $\frac{1}{||\bm{w}||}\min_{n=1..N}[t_n(\bm{\hat{w}^Tx_n+\hat{w_0}})]$ is the smallest distance between the hyperplane and $x$.
+\item $\frac{1}{||\bm{w}||}\min_{n}[\hat{h}]$ is the smallest distance between the hyperplane and $x$.
 
 \end{itemize}
 

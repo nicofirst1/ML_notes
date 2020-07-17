@@ -5,9 +5,10 @@
 
 Basic formulas:
 \begin{itemize}
+\item Same notation from now on $P(A \wedge B)=P(A,B)$
 \item \textbf{Product Rule}: $P(A \wedge B)=P(A|B)P(B)=P(B|A)P(A)$
 \item \textbf{Sum Rule} : $P(A \vee B)= P(A)+P(B)-P(A \wedge B)$
-\item \textbf{Theorem of Probability}: Given some mutaully exclusive events $A_1,...,A_n$ where $\sum_{i=1}^n P(A_j)=1$ we have:
+\item \textbf{Theorem of Probability} (also called marginalization): Given some mutaully exclusive events $A_1,...,A_n$ where $\sum_{i=1}^n P(A_j)=1$ we have:
 \[P(B) = \sum_{i=1}^n P(B|A_i)P(A_i)\]
 \end{itemize}
 
@@ -72,7 +73,7 @@ Thus:
 
 \subsection{Bernoulli}
 Describes the probability distribution of a binary random variable $X \in \lbrace 0,1 \rbrace$:
-\[P(X=1)=\theta \quad P(X=0)=1-theta\]
+\[P(X=1)=\theta \quad P(X=0)=1-\theta\]
 The probability of $X$ being a certain value $x$, given $\theta$ is:
 \[P(X=x,\theta)=\theta^x(1-\theta)^{1-x}\]
 While the probability of obtaining $k$ times the same result with $n$ trials is:

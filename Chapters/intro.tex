@@ -17,14 +17,14 @@ Where $\gamma$ is some discount to give more/less weight to current reward on be
 \paragraph{Hypothesis}
 Given a target function $\phi(x)$ that we want to learn and a set of approximations $H:\lbrace h_1, h_2,...,h_n\rbrace$ of which $h*$ is the best according to some measure, we have that $h*(x_i)$ is the best approximation of $y_i$.\\
 $h*$ is \textbf{consistent} with the dataset $D$ iff:
-$$h*(x_i)= \phi(x_i),\ \forall x in D$$
+$$h*(x_i)= \phi(x_i),\ \forall x \in D$$
 
 \subsection{Evaluation and Estimators}
 
 \paragraph{True Error}
-Given an hypothesis $h$ that approximates a target function $\phi $ the \textbf{true error} is the probability that $h(x)  \phi(x)$:
+Given an hypothesis $h$ that approximates a target function $\phi $ the \textbf{true error} is the probability that:
 $$error_t(h) \equiv P(h(x)\neq \phi(x))$$
-Cannot be computed.
+Unfortunately it cannot be computed.
 
 \paragraph{Sample Error}
 Given an hypothesis $h$ that approximates a target function $\phi $ the \textbf{sample error} is the proportion of samples not correctly classified:
@@ -61,12 +61,18 @@ Partition the dataset $D$ into $k$ subsets $D: \braces{S_1,S_2,...,S_k}$. Use on
 \end{itemize}
 
 \subsection{Decision Trees}
-Given an instance space $X$ coming from a set of attributes a decision tree has: each internal node tests an attribute, each branch denotes a value of an attribute, each leaf assigns a classification value. A rule is generated for each path to a leaf node. 
+Given an instance space $X$ coming from a set of attributes a decision tree has: 
+\begin{itemize}
+\item an attribute for each internal node test
+\item a branch for each  value of an attribute
+\item a leaf to which assigns a classification value
+\end{itemize}
+A rule is generated for each path to a leaf node. 
 
 
 \paragraph{Entropy}
 Having the proportion of positive samples as $p_+$ and the negative ones as $p_-=1-p_+$ the entropy measure the impurity of the set of samples $S$:
-\[Entropy(S)=-p_+^2-p_-^2\]
+\[Entropy(S)=-p_+\log_2p_+-p_-\log_2p_-\]
 
 
 
@@ -92,15 +98,16 @@ Hypothesis space search by ID3 is complete (target concept is there), outputs a 
 \end{itemize}
 
 \paragraph{Overfitting and pruning}
-To avoid tree overfitting an approach is to not split a node when the data is not statistically significant. Instead grow a full tree and then post-prune (replace nodes not important with leafs).\\
+To avoid tree overfitting an approach is to grow a full tree and then post-prune (replace nodes not important with leafs).\\
 To determine correct tree size, use a separate set of examples (training test and validation set), apply statistical test to estimate accuracy of a tree on data distribution
 
 \subsection{Probability and Bayes}
 
 \paragraph{Posterior}
-Conditional (or posterior) probability belief after the arrival of some evidence. I know the outcome of a random variable, how this affect probability of other random variables?
+Conditional (or posterior) probability arise after the arrival of some evidence. If I know the outcome of a random variable, how will this affect probability of other random variables?
 \[P(a|b)=\frac{P(a \wedge b)}{P(b)}\]
-Where denominator can be replaced with a normalization constant $\alpha$.
+Which also makes up the \textit{chain rule} as:
+$$P(a,b)=P(a|b)P(b)$$
 
 
 

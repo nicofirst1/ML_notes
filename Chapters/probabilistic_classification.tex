@@ -41,10 +41,10 @@ S_k=\frac{1}{N_k}\sum_n  t_{n,k}(x_n-\mu_k)(x_n-\mu_k)^T
 Differently from the previous one it tries to estimate $P(c_i|x)$ directly from the model.
 
 \paragraph{Logistic Regression}
-I tries to compute the likelihood unction as:
+I tries to compute the likelihood function as:
 $$p(t|w)=\prod_n y_n^{t_n}(1-y_n)^{t_n}$$
 Which is then optimized using the cross-entropy function:
-$$w^*=\argmin_w E(w)\quad E(w)=-\ln p(t|w)$$
+$$w^*=\argmin_w E(w),\quad E(w)=-\ln p(t|w)$$
 
 \paragraph{Iterative re-weighted last squares}
 The minimization can be solved with the IRLS using:
