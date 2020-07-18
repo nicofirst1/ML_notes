@@ -99,6 +99,50 @@ $$P(C_1|x)=P(x|C_1)P(C_1)=\sigma(\alpha)$$
 \paragraph{Model Parameters}
 The model parameters are defined by $N(x;\mu_1, \Sigma)$, so we have 2 means ($\mu_1,\mu_2$) and 4 others since $\Sigma$ has dimension $2 \times 2$ and it's the same for both classes. So we get a total of 6 parameters.
 
+\subsection{Secret String}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{exercises/bayes/ex5.png}
+\end{figure}
+
+\paragraph{Prior}
+By counting the possible configurations we see that they are only 7:
+\begin{itemize}
+\item $[0|101]$
+\item $[0|011]$
+\item $[0|110]$
+\item $[1|110]$
+\item $[1|101]$
+\item $[1|011]$
+\item $[1|111]$
+\end{itemize}
+3 where the first bit is $0$ and 4 were it's $1$.\\
+So our prior will be 
+$$P(s)=P(b_0,b_1,b_2,b_3)=\frac{1}{7}=0.142$$
+
+\paragraph{Conditional prob}
+First thing let us call $b_0=0$ as $B_0$, we can apply the bayes theorem to get: 
+$$P(s|B_0)=P(B_0|s)P(s)$$
+Now it is trivial to see that the probability of having $B_0$ with $s$ is 3 out of 7. So the value of  $P(s|B_0)$ becomes:
+$$P(s|B_0)=\frac{3}{7}\cdot \frac{1}{7}=0.06122$$
+The hypotesis are the one involving $B_0$, so :
+\begin{itemize}
+\item $h_1:[0|101]$
+\item $h_2:[0|011]$
+\item $h_3:[0|110]$
+\end{itemize}
+
+\paragraph{Likelihood}
+Out of the 4 possibilities we had for $b_0=1$, now we have just 3:
+\begin{itemize}
+\item $h_1:[1|110]$
+\item $h_2:[1|101]$
+\item $h_3:[1|111]$
+\end{itemize}
+In this, there are only 2 in which $b_2=1$, so 
+$$P(b_0=b_1=b_2=1|s)=\frac{2}{3}$$
+
+
 \section{MDP, RL}
 \subsection{Definitions}
 
@@ -204,7 +248,6 @@ Where:
 
 
 
-
 \section{Linear Regression, Classification}
 
 \subsection{Sequential vs Batch }
@@ -297,6 +340,23 @@ Unfortunately, least squares solutions lack robustness to outliers and are highl
     \includegraphics[scale=0.4]{least_square_error.png}
 \end{figure}
 The left plot shows data from two classes (red crosses and blue circles) with the decision boundary found by least squares (magenta) and by the logistic regression model (green). The right plot shows the corresponding results obtained when extra data points (outliers) are added at the bottom left of the diagram.
+
+
+\subsection{Exercise }
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.8]{exercises/linear/regression/ex4.png}
+\end{figure}
+
+\paragraph{Definition}
+If you look closely you can see that $t$ is equal to the number of $a$s in the string squared.\\
+Since we have to keep a linear model of the kind:
+$$y=W^T\phi(X) $$ 
+We can define :
+$$\phi(x)=\sum_n I(x_n='a')^2$$
+To be a function which counts the number of $a$s in the string and squares the result.\\
+While $W=1$ is a matrix of all ones.
 
 \section{K-NN}
 
@@ -474,49 +534,6 @@ So we choose the attribute with the most info gain as our root one, Furniture. F
 
 \section{Definitions}
 
-\subsection{Unsupervised vs supervised}
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.75]{exercises/definitions/ex1.png}
-\end{figure}
-
-Supervised learning is typically done in the context of:
-\begin{itemize}
-\item \textbf{Classification}: when we want to map input to output labels.
-\item \textbf{Regression}: when we want to map input to a continuous output.
-\end{itemize} 
-
-In both regression and classification, the goal is to find specific relationships or structure in the input data that allow us to effectively produce correct output data.\\
-
-Unsupervised learning uses techniques such as clustering, representation learning and density estimation. In all of these cases, we wish to learn the inherent structure of our input data without using explicitly-provided labels. Since no labels are provided, when analyzing the output there is no specific way to compare model performance in most unsupervised learning methods.\\
- 
-On the other hand, supervised learning  intends to infer a conditional probability distribution $p_X(x|y)$ conditioned on the label $y$ of input data; unsupervised learning intends to infer an a priori probability distribution $P_X(x)$ . Compared to supervised learning where training data is labeled with the appropriate classifications, models using unsupervised learning must learn relationships between elements in a data set and classify the raw data without "help."
-
-\subsection{Unsupervised}
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.8]{exercises/definitions/ex2.png}
-\end{figure}
-
-\paragraph{Definition}
-Unsupervised learning is a branch of machine learning that learns from test data that has not been labeled, classified or categorized. Instead of responding to feedback, unsupervised learning identifies commonalities in the data and reacts based on the presence or absence of such commonalities in each new piece of data. Alternatives include supervised learning and reinforcement learning. 
-
-\paragraph{Example}
-Using K-Means with number of clusters equal to 4, we get 
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.4]{kmeans.jpeg}
-\end{figure}
-
-\paragraph{K-Means}
-Steps for k-means:
-\begin{enumerate}
-\item Set k
-\item partition data randomly and define centroids
-\item For each sample estimate its distance from the current centroid. If the distance is more than another centroid switch.
-\item repeat previous step until convergence
-\end{enumerate}
 
 
 \subsection{Confusion matrix }
@@ -951,6 +968,60 @@ The usual approach can be taken to prevent overfitting:
 \item L1/L2 regularization.
 \end{itemize}
 
+
+\subsection{Dimension and Design}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{exercises/cnn/ex3.png}
+\end{figure}
+
+\paragraph{Max-pool size}
+For this we can use the usual formula:
+$$w_i=\frac{w_{i-1}-n+2p}{s}+1$$
+
+Which translates in:
+\begin{equation}
+\begin{aligned}
+w_{p1}=\frac{256 -2+2\cdot 0}{2}+1=128\\
+h_{p1}=\frac{256-2 +2\cdot 0}{2}+1=128\\
+d_{p1}=N=64\\
+\end{aligned}
+\end{equation}
+
+\paragraph{Design}
+The conv layer can be of any size as long as the feature map is $N$, for example we can have a $2\times 2$ kernel with $p=0$ padding and stride $s=2$ (same as the pool layer). Such layer will have as output:
+Which translates in:
+\begin{equation}
+\begin{aligned}
+w_{c1}=\frac{256 -2+2\cdot 0}{2}+1=128\\
+h_{c1}=\frac{256-2 +2\cdot 0}{2}+1=128\\
+d_{c1}=N\\
+\end{aligned}
+\end{equation}
+
+In such case the number of parameters would be:
+$$|\theta|=(2\times 2\times 64 +1)\times 64=16448$$
+
+
+\paragraph{Depth}
+The output of the hidden activation function influences the depth (or feature space) of the network in terms of values. ????
+
+\subsection{Ensamble}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{exercises/cnn/ex4.png}
+\end{figure}
+
+\paragraph{Ensamble}
+A simple yet efficient way to combine the predictions is just to sum them up and get the mean value with:
+$$y(x,CNN)=\frac{1}{N}\sum_n y(x,CNN_n)$$
+
+\paragraph{Solution}
+The method would follow the above equation as:
+$$\frac{1}{N}\sum_n y(x,CNN_n)=\frac{1}{3}(0.912+0.432+0.444)=0.596$$
+So that the image would be classified as a cat (class 1)
+
+
 \section{PCA}
 
 \subsection{Exercise}
@@ -986,6 +1057,129 @@ M should be at least equal to the number of intrinsic dimension but could also i
 
 
 
+\section{Unsupervised}
+
+
+
+\subsection{Gaussian Mixture models GMM}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.7]{exercises/other/ex7.png}
+\end{figure}
+
+\paragraph{Definition}
+A gaussian mixture model has the form:
+$$p(x)=\prod_k \pi_k N(x,\mu_k,\Sigma_k)$$
+The parameters are given by $\mu_k, \Sigma_k, \pi_k$
+
+\paragraph{Model size }
+Since $K=3$ the parameters are: 
+\begin{itemize}
+\item 3 means $\mu_1,\mu_2,\mu_3$ 
+\item 3 mixture intensities $\pi_1,\pi_2,\pi_3$ 
+\item 3 covariance matrices $\Sigma_1,\Sigma_2,\Sigma_3$. Notice that these matrices are $3\times 3$ each, so, in terms of parameters, they count as $36$ elements.
+\end{itemize}
+The total size of the model is $9$.
+
+
+\subsection{Definition and example}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{exercises/other/ex3.png}
+\end{figure}
+
+
+\paragraph{Definition}
+Unsupervised learning refers to the use of artificial intelligence (AI) algorithms to identify patterns in data sets containing data points that are neither classified nor labeled.
+
+\paragraph{Example}
+Clustering of similar people based on movies they watched.
+
+\paragraph{Solution}
+The clustering based on k-means could cluster together people who like more horrors or action movies.
+
+\subsection{Unsupervised vs supervised}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.75]{exercises/definitions/ex1.png}
+\end{figure}
+
+Supervised learning is typically done in the context of:
+\begin{itemize}
+\item \textbf{Classification}: when we want to map input to output labels.
+\item \textbf{Regression}: when we want to map input to a continuous output.
+\end{itemize} 
+
+In both regression and classification, the goal is to find specific relationships or structure in the input data that allow us to effectively produce correct output data.\\
+
+Unsupervised learning uses techniques such as clustering, representation learning and density estimation. In all of these cases, we wish to learn the inherent structure of our input data without using explicitly-provided labels. Since no labels are provided, when analyzing the output there is no specific way to compare model performance in most unsupervised learning methods.\\
+ 
+On the other hand, supervised learning  intends to infer a conditional probability distribution $p_X(x|y)$ conditioned on the label $y$ of input data; unsupervised learning intends to infer an a priori probability distribution $P_X(x)$ . Compared to supervised learning where training data is labeled with the appropriate classifications, models using unsupervised learning must learn relationships between elements in a data set and classify the raw data without "help."
+
+\subsection{K-means}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.8]{exercises/definitions/ex2.png}
+\end{figure}
+
+\paragraph{Definition}
+Unsupervised learning is a branch of machine learning that learns from test data that has not been labeled, classified or categorized. Instead of responding to feedback, unsupervised learning identifies commonalities in the data and reacts based on the presence or absence of such commonalities in each new piece of data. Alternatives include supervised learning and reinforcement learning. 
+
+\paragraph{Example}
+Using K-Means with number of clusters equal to 4, we get 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{kmeans.jpeg}
+\end{figure}
+
+\paragraph{K-Means}
+Steps for k-means:
+\begin{enumerate}
+\item Set k
+\item partition data randomly and define centroids
+\item For each sample estimate its distance from the current centroid. If the distance is more than another centroid switch.
+\item repeat previous step until convergence
+\end{enumerate}
+
+
+\section{Probabilistic Models}
+
+\subsection{Generative vs Discriminative}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{exercises/prob/ex1.png}
+\end{figure}
+
+\paragraph{Difference}
+the difference is that the generative model estimates $P(C_i|x)$ with the bayes theorem while the discriminative uses the model directly.
+
+
+\subsection{Exercise}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{exercises/prob/ex2.png}
+\end{figure}
+
+\paragraph{Definition}
+Since we are dealing with a 3-dimensional input we can assume that each input comes from a different gaussian distribution, thus $K=3$. Moreover each gaussian is of the kind:
+$$\pi_k N(\mu_k,\Sigma_k)$$
+Now let's set a latent variable $z_k$ for each gaussian, we get :
+$$P(X)=\prod_n \sum_k \pi_k N(x_n|\mu_n,\Sigma_n)$$
+
+\paragraph{Parameters}
+The parameters for each gaussian are 3:
+\begin{itemize}
+\item $\mu_k$, the mean
+\item $\Sigma_k$, the covariance matrix
+\item $\pi_k$, the mixing probability
+\end{itemize}
+So the total number of params is 9.
+
 \section{Other}
 
 
@@ -1011,25 +1205,6 @@ Given
 The output of the linear classifier is:
 \[Y_m(x)=sign(\sum_{m=1}^M\alpha_my_m(x))\]
 
-
-
-
-\subsection{Unsupervised}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.5]{exercises/other/ex3.png}
-\end{figure}
-
-
-\paragraph{Definition}
-Unsupervised learning refers to the use of artificial intelligence (AI) algorithms to identify patterns in data sets containing data points that are neither classified nor labeled.
-
-\paragraph{Example}
-Clustering of similar people based on movies they watched.
-
-\paragraph{Solution}
-The clustering based on k-means could cluster together people who like more horrors or action movies.
 
 
 \subsection{Gram, Kernel}
@@ -1070,34 +1245,4 @@ A method to achieve such results we can use the voting method in which we train 
 \paragraph{Proprieties}
 A base propriety for each classifier is that they have to achieve a sufficient accuracy on their own. Implementing multi learners methods where the indiviual classifiers do not achieve a more than $10\%$ accuracy is not advised.
 
-\subsection{Gaussian Mixture models GMM}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.7]{exercises/other/ex7.png}
-\end{figure}
-
-\paragraph{Definition}
-A gaussian mixture model has the form:
-$$p(x)=\prod_k \pi_k N(x,\mu_k,\Sigma_k)$$
-The parameters are given by $\mu_k, \Sigma_k, \pi_k$
-
-\paragraph{Model size }
-Since $K=3$ the parameters are: 
-\begin{itemize}
-\item 3 means $\mu_1,\mu_2,\mu_3$ 
-\item 3 mixture intensities $\pi_1,\pi_2,\pi_3$ 
-\item 3 covariance matrices $\Sigma_1,\Sigma_2,\Sigma_3$. Notice that these matrices are $3\times 3$ each, so, in terms of parameters, they count as $36$ elements.
-\end{itemize}
-The total size of the model is $9$.
-
-\subsection{Generative vs Discriminative Probabilistic}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.5]{exercises/other/ex8.png}
-\end{figure}
-
-\paragraph{Difference}
-the difference is that the generative model estimates $P(C_i|x)$ with the bayes theorem while the discriminative uses the model directly.
 
