@@ -15,7 +15,7 @@
 
 \paragraph{Naive description and difference}
 So the optimal one is equal to:
-$$c_{ob}=P(c_j|x,D)=\sum_h P(c_j|x,h)P(h|D)$$
+$$c_{ob}=P(c_j|x,D)=\sum_i P(c_j|x,h_i)P(h_i|D)$$
 Which requires to estimate all the hypos probabilities.\\
 So this is where the naive classifiers comes into pay saying that the sample $x$ can be seen as a set of attributes $A=\{a_1,a_2,\dots, a_n\}$ which are \textbf{independent} from each other.\\
 It does so using the  bayes theorem in the following way:
@@ -273,7 +273,7 @@ Where $\epsilon$ is some Gaussian noise. If we assume the samples to be i.i.d. t
 where $\beta^{-1}$ is the variance of the noise. This approach is used with batch learning in which the entire training set is processed altogether.\\
 
 For sequential learning \textit{stochastic gradient descent} can be used to update the model parameters in the following way:
-\[w_{n+1}=w_n+\eta \nabla E_n= w_n +[t_n -w_n^T \phi(x_n)]\phi(x_n)\]
+\[w_{n+1}=w_n-\eta \nabla E_n= w_n +[t_n -w_n^T \phi(x_n)]\phi(x_n)\]
 Where:
 \begin{itemize}
 \item $\eta$: is the learning rate 
@@ -284,7 +284,7 @@ Where:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.6]{exercises/linear/regression/ex2.png}
+    \includegraphics[scale=0.7]{exercises/linear/regression/ex2.png}
 \end{figure}
  
  \paragraph{Definition}
@@ -294,7 +294,7 @@ $$p(t|w)=\prod_n y_n^{t_n}(1-y_n)^{1-t_n}$$
 Where $y_n$ is the predicted class for the n element, that is $\sigma(w^tx_n)$. The prediction is estimated using the non linearity $\sigma(w^tx_n)$.
 
 \paragraph{Parameters}
-The parameters to be learn are just 3, 2 for the attributes + the bias term.
+The parameters to be learn are just 3: 2 for the attributes + the bias term.
 
 \paragraph{Error Function}
 The cross-entropy error function of the kind:
@@ -342,24 +342,42 @@ Unfortunately, least squares solutions lack robustness to outliers and are highl
 The left plot shows data from two classes (red crosses and blue circles) with the decision boundary found by least squares (magenta) and by the logistic regression model (green). The right plot shows the corresponding results obtained when extra data points (outliers) are added at the bottom left of the diagram.
 
 
-\subsection{Exercise }
+\subsection{Ex. Variable length string}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.8]{exercises/linear/regression/ex4.png}
+    \includegraphics[scale=0.5]{exercises/linear/regression/ex4.png}
 \end{figure}
 
-\paragraph{Definition}
+\paragraph{Definition "Cheat"}
 If you look closely you can see that $t$ is equal to the number of $a$s in the string squared.\\
 Since we have to keep a linear model of the kind:
 $$y=W^T\phi(X) $$ 
 We can define :
-$$\phi(x)=\sum_n I(x_n='a')^2$$
+$$\phi(x)=\sum_n I(x_n=a)^2$$
 To be a function which counts the number of $a$s in the string and squares the result.\\
 While $W=1$ is a matrix of all ones.
 
+\paragraph{Definition Classical}
+Since the previous one is "too easy" and we want to stick to the theoretical approach we can define a k-hot-vector representation $V \in Z_+^{26}$ of the characters were we associate to an index ($a=1,b=2,\dots, z=26$) the number of character in the string.\\
+Since we want the square of the number of repetition we can simply multiply $V$ for itself to obtain the model:
+$$y=\sum_n (w^T_n v_n) v_n=(W^T V^T)V$$
+Which can become linear if we use the function $\phi(x)=x^Tx$, so we get:
+$$y=W^T \phi(V)$$
 
-\subsection{Exercise}
+
+\paragraph{Kernel trick}
+Since we love overkilling this problem, we can even use the kernel trick instead of $\phi(x)$ so to have:
+$$y=W^T_n k(V^T,V)=\sum_n \alpha_n k(x_n,x),\quad k(x,y)=x \cdot y$$
+
+The solution to this stuff will be the same as for every linear kernel:
+$$\alpha=(K+\lambda I)^{-1}t$$
+Where $K$ is the gram matrix where $k_{i,j}(x,y)=x\cdot y$
+
+\paragraph{Solution}
+If we use the previous result and train the model it will just result in $W=[1,0,0,\dots,0]$, that is the only repetition that matters is a.
+
+\subsection{Ex. school scoring}
 
 \begin{figure}[H]
     \centering
@@ -448,7 +466,7 @@ Again, you just need to check which points are closer to the circle.
 \subsection{Tree classification}
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.7]{exercises/tree/ex1.png}
+    \includegraphics[scale=0.8]{exercises/tree/ex1.png}
 \end{figure}
 
 \paragraph{Rules}
@@ -744,7 +762,7 @@ So the final form for the model would be:
 $$y(x)=w_{out}^T\times \phi(x^TW+c_i)+b$$
 
 \paragraph{Activation functions}
-Since this is a regression problem the activation function will be the Identity function which is simply:
+Since this is a regression problem the output activation function will be the identity function which is simply:
 $$y=W^Th+b$$
 For the hidden units we can use ReLu:
 $$g(\alpha)=max(0,\alpha)$$
@@ -1051,11 +1069,11 @@ So that the image would be classified as a cat (class 1)
 
 \section{PCA}
 
-\subsection{Exercise}
+\subsection{Ex. Rotating 3}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.7]{exercises/other/ex1.png}
+    \includegraphics[scale=0.5]{exercises/pca/ex1.jpg}
 \end{figure}
 
 \paragraph{Formula}
@@ -1065,7 +1083,7 @@ $$\hat{x}_n=\sum_i(x^T_nu_i)u_i$$
 \paragraph{Data description}
 Yes because even if in theory there are as many dimension as there are pixels in the image (assuming black/white), in practice you can fully recover every image using 3 dimensions: x, y of the center and an angle of rotation because images are all the same, so you need no extra info about the image itself, only about its position
 
-\subsection{Explanation,Algo }
+\subsection{Ex.Smile Face }
 
 \begin{figure}[H]
     \centering
@@ -1073,7 +1091,7 @@ Yes because even if in theory there are as many dimension as there are pixels in
 \end{figure}
 
 \paragraph{Dimension}
-The data dimensionality is $D=144$, since this is the total number of pixels.. On the other hand, the intrinsic dimensionality is just $D=3$ two for the coordinates and one for the angle rotation.
+Since there are $12\times 12=144$ pixels that can assume the value $B=\{0,1\}$, the data dimensionality is $B^{144} $. On the other hand, the intrinsic dimensionality is just $D=3$ two for the coordinates and one for the angle rotation.
 
 \paragraph{Data projection}
 Since we already have the principal components we can just apply the projection formula:
@@ -1092,7 +1110,7 @@ M should be at least equal to the number of intrinsic dimension but could also i
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.7]{exercises/other/ex7.png}
+    \includegraphics[scale=0.7]{exercises/uns/ex1.png}
 \end{figure}
 
 \paragraph{Definition}
@@ -1110,46 +1128,13 @@ Since $K=3$ the parameters are:
 The total size of the model is $9$.
 
 
-\subsection{Definition and example}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.5]{exercises/other/ex3.png}
-\end{figure}
-
-
-\paragraph{Definition}
-Unsupervised learning refers to the use of artificial intelligence (AI) algorithms to identify patterns in data sets containing data points that are neither classified nor labeled.
-
-\paragraph{Example}
-Clustering of similar people based on movies they watched.
-
-\paragraph{Solution}
-The clustering based on k-means could cluster together people who like more horrors or action movies.
-
-\subsection{Unsupervised vs supervised}
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.75]{exercises/definitions/ex1.png}
-\end{figure}
-
-Supervised learning is typically done in the context of:
-\begin{itemize}
-\item \textbf{Classification}: when we want to map input to output labels.
-\item \textbf{Regression}: when we want to map input to a continuous output.
-\end{itemize} 
-
-In both regression and classification, the goal is to find specific relationships or structure in the input data that allow us to effectively produce correct output data.\\
-
-Unsupervised learning uses techniques such as clustering, representation learning and density estimation. In all of these cases, we wish to learn the inherent structure of our input data without using explicitly-provided labels. Since no labels are provided, when analyzing the output there is no specific way to compare model performance in most unsupervised learning methods.\\
- 
-On the other hand, supervised learning  intends to infer a conditional probability distribution $p_X(x|y)$ conditioned on the label $y$ of input data; unsupervised learning intends to infer an a priori probability distribution $P_X(x)$ . Compared to supervised learning where training data is labeled with the appropriate classifications, models using unsupervised learning must learn relationships between elements in a data set and classify the raw data without "help."
-
 \subsection{K-means}
+
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.8]{exercises/definitions/ex2.png}
+    \includegraphics[scale=0.5]{exercises/uns/ex2.png}
 \end{figure}
+
 
 \paragraph{Definition}
 Unsupervised learning is a branch of machine learning that learns from test data that has not been labeled, classified or categorized. Instead of responding to feedback, unsupervised learning identifies commonalities in the data and reacts based on the presence or absence of such commonalities in each new piece of data. Alternatives include supervised learning and reinforcement learning. 
@@ -1170,6 +1155,26 @@ Steps for k-means:
 \item For each sample estimate its distance from the current centroid. If the distance is more than another centroid switch.
 \item repeat previous step until convergence
 \end{enumerate}
+
+
+\subsection{Unsupervised vs supervised}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.75]{exercises/uns/ex3.png}
+\end{figure}
+
+Supervised learning is typically done in the context of:
+\begin{itemize}
+\item \textbf{Classification}: when we want to map input to output labels.
+\item \textbf{Regression}: when we want to map input to a continuous output.
+\end{itemize} 
+
+In both regression and classification, the goal is to find specific relationships or structure in the input data that allow us to effectively produce correct output data.\\
+
+Unsupervised learning uses techniques such as clustering, representation learning and density estimation. In all of these cases, we wish to learn the inherent structure of our input data without using explicitly-provided labels. Since no labels are provided, when analyzing the output there is no specific way to compare model performance in most unsupervised learning methods.\\
+ 
+On the other hand, supervised learning  intends to infer a conditional probability distribution $p_X(x|y)$ conditioned on the label $y$ of input data; unsupervised learning intends to infer an a priori probability distribution $P_X(x)$ . Compared to supervised learning where training data is labeled with the appropriate classifications, models using unsupervised learning must learn relationships between elements in a data set and classify the raw data without "help."
+
 
 
 \section{Probabilistic Models}
