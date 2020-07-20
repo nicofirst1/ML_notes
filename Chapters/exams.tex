@@ -358,6 +358,33 @@ $$\phi(x)=\sum_n I(x_n='a')^2$$
 To be a function which counts the number of $a$s in the string and squares the result.\\
 While $W=1$ is a matrix of all ones.
 
+
+\subsection{Exercise}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.3]{exercises/linear/regression/ex5.jpg}
+\end{figure}
+
+\paragraph{Error Function }
+We can define the error function to be the canonical one for a regression problem , that is least square:
+$$E=\min\frac{1}{2}\sum_n (t_n -w^Tx_n)^2$$
+
+\paragraph{Linearity}
+Out goal is to obtain a linearity in the weight space, that is we want each weight $w_n$ to be multiply with a linear attribute. This is achievable introducing a the functions
+\begin{itemize}
+\item $\phi_4(x,y)=x\times y$
+\item $\phi_5(x)=x^2$
+\end{itemize}
+This vector can be now introduced in the model as:
+$$y(X)=\theta_1 x_1+ \theta_2 x_2+\theta_3 x_3+ \theta_4 \phi_4(x_1,x_2)+\theta_5\phi_5(x_3)$$
+
+\paragraph{Iterative algo}
+An iterative approach can be the SGD, where you update the weights value with:
+$$w_i \leftarrow w_{i-1} - \eta\nabla E=w_{i-1} - \eta[t_n-w^T\phi(x)]\phi(x)$$
+
+
+
 \section{K-NN}
 
 \subsection{Algo and example}
