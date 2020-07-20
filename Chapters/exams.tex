@@ -930,14 +930,14 @@ The svm works even for non linearly separable dataset, using kernel trick. perce
 \paragraph{Dimensions}
 Given:
 \begin{itemize}
-\item $s$ the stride 
-\item $p$ the padding
+\item $s$: the stride 
+\item $p$: the padding
 \item $w_i$: the output width (first dimension)
 \item $h_i$: the output height (second dimension)
-\item $d_i$: the output color (third dimension)
+\item $d_i$: the output color channel (third dimension)
 \item $w_i\times h_i\times d_i$: output dimension of layer i
 \item $n_i\times m_i$: the dimension of the kernel for conv $i$
-\item $\theta$: total number of parameters
+\item $\theta_i$: total number of parameters for layer i.
 \item $y_i$: output feature map of layer i.
 \item $x_i$: input feature map of layer i.
 \end{itemize}
@@ -953,7 +953,7 @@ d=y_i\\
 \end{equation}
 
 For a fully connected layer:
-$$\theta_i=(x_i +1)\cdot y_i $$
+$$\theta_i=(w_i +1)\cdot h_i $$
 
 So, using the above equation we have:
 \begin{itemize}
